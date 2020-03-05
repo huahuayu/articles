@@ -46,6 +46,7 @@
 | **Remote repository**                             |                                                          |
 | git remote add repoName https://url_of_repo       | Add remote repo with name ‘repoName’                     |
 | git remote -v                                     | Show list of added repoNames                             |
+| git remote set-url origin git@{new_repo_name}.git                    | change remote repo url to track     |
 | git remote remove repoName                        | Remove repoName from list                                |
 | git push repoName branch1                         | Push ‘branch1’ to ‘repoName’                             |
 | git push repoName –all                            | Push all branches to repoName                            |
@@ -110,6 +111,7 @@ $ git rm -r --cached directory/
 
 **场景二：**  
 文件已经添加到stage，还未commit，但暂时不想提交，想从staged状态变为unstaged状态，文件变更不丢失。  
+
 ```
 # unstage一个文件
 $ git reset HEAD <file-name>
@@ -118,6 +120,13 @@ $ git reset HEAD .
 ```
 
 **场景三：**  
+本地已commit，但是未push到远程，现在想撤销commit，但变更不丢失，回到stage状态  
+
+``` bash
+git reset HEAD~1 --soft
+```
+
+**场景四：**  
 放弃当前所有变更，回退到上一个commit版本  
 ```
 $ git reset --hard
@@ -128,7 +137,7 @@ $ git reset --hard
 $ git reset --hard <commit-id>
 ```
 
-**场景四：**  
+**场景五：**  
 放弃已经track的，但是没有在stage的文件变更，已经在stage的文件保持不变(比`git reset --hard`要安全)   
 ```
 # 单个文件
@@ -137,7 +146,7 @@ $ git checkout -- <file-name>
 $ git checkout -- .
 ```
 
-**场景五：**  
+**场景六：**  
 取消当前merge  
 
 git版本 >= 1.6.1  
