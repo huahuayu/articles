@@ -3,7 +3,7 @@
 [//category]:(git,tutorial)
 [//tags]:(git)
 [//createTime]:(20200301)
-[//lastUpdateTime]:(20200301)
+[//lastUpdateTime]:(20200305)
 ## git命令
 
 | 命令                                              | 描述                                                     |
@@ -74,6 +74,14 @@ git remote add origin git@git/remote/repo.git
 git push -u origin --all
 git push -u origin --tags
 ```
+
+## 改变跟踪的远程repo
+如果远程repo重命名了，或者想跟踪另一个远程repo，本地repo将无法拉取远程的更新，所以也需要重命名，重命名方法如下  
+``` bash
+git remote set-url origin git@{new_repo_name}.git
+``` 
+
+可以使用`git remote -v`命令来查看修改前后的变化  
 
 ## 实用技巧
 ### git status中文显示问题
