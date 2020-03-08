@@ -1,6 +1,6 @@
 [//title]:(drools示例项目-电商定价)
 [//englishTitle]:(drools-example-ecommerce-pricing)
-[//category]:(java,drools)
+[//category]:(java,drools,tutorial)
 [//tags]:(java,drools,rule-engine)
 [//createTime]:(2020-03-05)
 [//lastUpdateTime]:(2020-03-05)
