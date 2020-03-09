@@ -50,13 +50,12 @@ make install
 # open new shell and check tmux version
 tmux -V
 ```
-> prefix = ctrl + b
+默认的prefix = `ctrl + b`
 
 ### 查看版本
-``` 
+``` bash
 tmux -V
 ```
-
 
 ## 推荐配置
 tmux的默认配置文件位置为`~/.tmux.conf`    
@@ -121,14 +120,14 @@ fi
 ```
 
 ## 系统操作
-| command | usage | 
-| -------- | -------- |
-| prefix + ?     | 列出所有快捷键；按q返回     |
-| prefix + d     | 脱离当前会话,返回Shell界面     |
-| prefix + D     | 选择要脱离的会话；在同时开启了多个会话时使用     |
-| prefix + Ctrl+z     | 挂起当前会话     |
-| prefix + :     | 进入命令行模式,此时可以输入tmux支持的命令     |
-| **prefix + [**     | **进入复制模式；此时的操作与vi相同，按q/Esc退出**     |
+| command         | usage                                             |
+| --------------- | ------------------------------------------------- |
+| prefix + ?      | 列出所有快捷键；按q返回                           |
+| prefix + d      | 脱离当前会话,返回Shell界面                        |
+| prefix + D      | 选择要脱离的会话；在同时开启了多个会话时使用      |
+| prefix + Ctrl+z | 挂起当前会话                                      |
+| prefix + :      | 进入命令行模式,此时可以输入tmux支持的命令         |
+| **prefix + [**  | **进入复制模式；此时的操作与vi相同，按q/Esc退出** |
 
 
 ## Session管理
