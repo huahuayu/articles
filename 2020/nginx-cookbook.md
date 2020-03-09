@@ -1,6 +1,6 @@
 [//title]:(nginx-cookbook)
 [//englishTitle]:(nginx-cookbook)
-[//category]:(nginx)
+[//category]:(nginx,tutorial)
 [//tags]:(nginx)
 [//createTime]:(20190601)
 [//lastUpdateTime]:(20200308)
