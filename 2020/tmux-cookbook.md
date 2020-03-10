@@ -16,7 +16,7 @@ tmux是一个终端多路复用工具，使用它可以在一个窗口里打开�
 - tmux之所以能保存现场，因为其进程一直在后台运行  
 
 ## tmux安装
-## ubuntu安装
+### ubuntu安装
 `apt install tmux`
 
 ### centos安装
@@ -50,12 +50,18 @@ make install
 # open new shell and check tmux version
 tmux -V
 ```
-默认的prefix = `ctrl + b`
+
 
 ### 查看版本
 ``` bash
 tmux -V
 ```
+
+## prefix键
+进入tmux后，所有的tmux命令前都需要先敲prefix键  
+默认的prefix = `ctrl + b`  
+如新建tmux窗口，命令为`prefix + c`，实际在键盘需要按的键为，先按`ctrl + b`，再按`c`  
+因为`ctrl + b`按起来有点麻烦，所以建议按下面的配置文件来配置，使`号（键盘数字1左边）成为 prefix键  
 
 ## 推荐配置
 tmux的默认配置文件位置为`~/.tmux.conf`    
@@ -109,15 +115,6 @@ set -s escape-time 1
 `source-file ~/.tmux.conf`  
 
 按以上配置，后续只要按`prefix + r`，无需退出tmux，即可重新加载配置  
-
-
-## 自动使用tmux
-将以下配置加入服务器的`~/.bash_profile`或 `~/.zsh_profile`文件中, 只要一登录服务器就会自动使用tmux（Mac也适用）    
-```
-if [ -z "$TMUX" ]; then
-    tmux attach -t 0 || tmux new -s 0
-fi
-```
 
 ## 系统操作
 | command         | usage                                             |
@@ -227,5 +224,12 @@ prefix + KJHL # 上下左右调整面板边界
 不建议嵌套使用tmux，但是有时候会有从本地tmux ssh到远程server，然后又在远程server也使用tmux的情况，这样就会产生嵌套了。  
 如果恰好两个tmux的prefix键都是一样的，那么使用prefix键时将只对外层的tmux有效，没办法使用里层的tmux。  
 要解决这个问题，按两次prefix键即可（第二层按2次，第三层按3次，以此类推）。  
-![](https://raw.githubusercontent.com/huahuayu/img/master/20190630222644.png)
+![](https://cdn.liushiming.cn/img/20200309114950.png)
 
+## 自动使用tmux
+将以下配置加入服务器的`~/.bash_profile`或 `~/.zsh_profile`文件中, 只要一登录服务器就会自动使用tmux（Mac也适用）    
+```
+if [ -z "$TMUX" ]; then
+    tmux attach -t 0 || tmux new -s 0
+fi
+```
