@@ -1,11 +1,12 @@
-[//title]:(家庭电脑作为公网服务器教程)
+[//title]:(PC作为公网服务器教程)
 [//englishTitle]:(pc-as-a-server)
 [//category]:(network,tutorial)
 [//tags]:(公网ip)
 [//createTime]:(20200310)
-[//lastUpdateTime]:(20200310)
+[//lastUpdateTime]:(20200311)
 ## 概述
 家庭电脑和服务器最大的差别就是：
+
 1. 没有公网ip  
 1. 或者有公网ip也不固定，每次重启路由器或者断电就会重新分配ip  
 
