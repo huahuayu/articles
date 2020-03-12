@@ -99,7 +99,7 @@ $ diskutil list
    2:       Microsoft Basic Data UDISK                   7.8 GB     disk2s2
 ```
 
-如果要格式化为别的格式，请参考下面的参考资料  
+如果要格式化为别的文件格式，请看参考资料  
 
 ## 参考资料
 [How to Erase a Disk from Command Line in Mac OS X](https://osxdaily.com/2016/08/30/erase-disk-command-line-mac/)
