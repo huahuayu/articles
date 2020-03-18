@@ -1,4 +1,4 @@
-[//title]:(跨平台usb系统启动盘制作工具-etcher)
+[//title]:(跨平台usb系统启动盘制作工具etcher介绍)
 [//englishTitle]:(mac-create-bootable-linux-usb-by-etcher)
 [//category]:(mac,tools,utility)
 [//tags]:(U盘,usb,linux,mac,启动盘)
