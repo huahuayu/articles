@@ -3,7 +3,7 @@
 [//category]:(centos,linux,tutorial)
 [//tags]:(centos,wifi,driver,broadcom,mac)
 [//createTime]:(20190318)
-[//lastUpdateTime]:(20200318)
+[//updateTime]:(20200318)
 
 ## 概述
 家里有一台闲置的Mac mini，我给它装上Centos 7做服务器用，它的无线网卡型号为[broadcom BCM4331](https://www.broadcom.com/products/wireless/wireless-lan-infrastructure/bcm4331)，centos默认不带这个无线网卡驱动，需要自己安装。  

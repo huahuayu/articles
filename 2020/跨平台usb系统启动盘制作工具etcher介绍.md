@@ -3,7 +3,7 @@
 [//category]:(mac,tools,utility)
 [//tags]:(U盘,usb,linux,mac,启动盘)
 [//createTime]:(20200313)
-[//lastUpdateTime]:(20200313)
+[//updateTime]:(20200313)
 ## 概述
 [etcher](https://www.balena.io/etcher/)是一款开源的跨平台usb系统启动盘制作工具，使用非常简单友好。可以参考下，相比[Mac下用命令行制作Linux启动U盘](https://liushiming.cn/2020/03/12/mac-create-bootable-linux-usb/)，简单很多。  
 

@@ -3,7 +3,7 @@
 [//category]:(docker,tutorial)
 [//tags]:(docker,install docker)
 [//createTime]:(20190318)
-[//lastUpdateTime]:(20200318)
+[//updateTime]:(20200318)
 
 ## 概述
 centos用命令行安装docker很简单，比ubuntu下简单    

@@ -3,7 +3,7 @@
 [//category]:(git,tutorial)
 [//tags]:(git)
 [//createTime]:(20200301)
-[//lastUpdateTime]:(20200318)
+[//updateTime]:(20200318)
 ## git命令
 
 | 命令                                              | 描述                                                     |

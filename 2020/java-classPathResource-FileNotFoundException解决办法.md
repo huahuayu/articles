@@ -2,6 +2,8 @@
 [//englishTitle]:(java-classPathResource-FileNotFoundException)
 [//category]:(java,problem-solved)
 [//tags]:(java,classPathResource,FileNotFoundException)
+[//createTime]:(20200226)
+[//updateTime]:(20200226)
 ## 概述
 今天通过java程序读取resource文件夹里面的一些文件，文件明明放到了指定的文件夹，通过`classPathResource`来读取，但是程序报文件不存在。  
 

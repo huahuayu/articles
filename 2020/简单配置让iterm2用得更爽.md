@@ -3,7 +3,7 @@
 [//category]:(mac,iterm2)
 [//tags]:(mac,iterm2,dotfiles)
 [//createTime]:(20200115)
-[//lastUpdateTime]:(20200318)
+[//updateTime]:(20200318)
 ## 概述
 `iterm2`比mac原生的terminal好用很多，是mac下必装的软件之一，装好后简单配置就用的很爽了。我个人的配置主要有以下方面，供参考：
 

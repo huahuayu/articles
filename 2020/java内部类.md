@@ -3,7 +3,7 @@
 [//category]:(java)
 [//tags]:(java)
 [//createTime]:(20200225)
-[//lastUpdateTime]:(202002225)
+[//updateTime]:(202002225)
 
 ## 概述
 内部类是指，一个类是另一个类的成员。java中有四种内部类：

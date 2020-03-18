@@ -3,7 +3,7 @@
 [//category]:(mac)
 [//tags]:(mac,udisk,diskutil)
 [//createTime]:(2020-03-12)
-[//lastUpdateTime]:(2020-03-12)
+[//updateTime]:(2020-03-12)
 ## 概述
 Mac下格式化U盘可以用图形界面做，也可以用命令行做  
 ![](https://cdn.liushiming.cn/img/20200312105227.png)  

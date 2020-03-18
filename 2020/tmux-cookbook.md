@@ -3,7 +3,7 @@
 [//category]:(tmux,tutorial)
 [//tags]:(ssh,tmux)
 [//createTime]:(20190322)
-[//lastUpdateTime]:(20200309)
+[//updateTime]:(20200309)
 # tmux cookbook
 tmux是一个终端多路复用工具，使用它可以在一个窗口里打开多个终端，ssh连接到远程服务器时特别好用。    
 

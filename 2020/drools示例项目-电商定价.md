@@ -3,7 +3,7 @@
 [//category]:(java,drools,tutorial)
 [//tags]:(java,drools,rule-engine)
 [//createTime]:(2020-03-05)
-[//lastUpdateTime]:(2020-03-05)
+[//updateTime]:(2020-03-05)
 ## 介绍 
 使用drools规则引擎实现的一个电商差异化定价服务
 

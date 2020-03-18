@@ -3,7 +3,7 @@
 [//category]:(nginx,tutorial)
 [//tags]:(nginx)
 [//createTime]:(20190601)
-[//lastUpdateTime]:(20200308)
+[//updateTime]:(20200308)
 # nginx cookbook
 ## nginx架构
 Nginx的代码是由一个核心和一系列的模块组成。  

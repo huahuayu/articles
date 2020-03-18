@@ -3,7 +3,7 @@
 [//category]:(network,tutorial)
 [//tags]:(公网ip)
 [//createTime]:(20200310)
-[//lastUpdateTime]:(20200311)
+[//updateTime]:(20200311)
 ## 概述
 家庭电脑和服务器最大的差别就是：
 

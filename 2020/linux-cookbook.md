@@ -3,7 +3,7 @@
 [//category]:(linux,tutorial)
 [//tags]:(linux)
 [//createTime]:(20200218)
-[//lastUpdateTime]:(20200218)
+[//updateTime]:(20200218)
 ## 查看linux版本
 方法一  
 ``` zsh

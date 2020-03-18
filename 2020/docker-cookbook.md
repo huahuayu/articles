@@ -3,7 +3,7 @@
 [//category]:(docker,tutorial)
 [//tags]:(docker)
 [//createTime]:(20190301)
-[//lastUpdateTime]:(20200312)
+[//updateTime]:(20200312)
 ## 安装docker
 ### mac版本
 直接去官方下载dmg安装文件 https://hub.docker.com/editions/community/docker-ce-desktop-mac，下载前会要求你注册一个docker.com的账号

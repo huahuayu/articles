@@ -3,7 +3,7 @@
 [//category]:(vim,problem,problem-solved)
 [//tags]:(vim)
 [//createTime]:(20200118)
-[//lastUpdateTime]:(20200118)
+[//updateTime]:(20200118)
 ## 概述
 复制粘贴是文本编辑最常用的功能，但是在vim中复制粘贴还是有点麻烦的，有一点学习成本。本文总结了使用vim复制粘贴的典型场景和使用方法，希望对读者有帮助。
 

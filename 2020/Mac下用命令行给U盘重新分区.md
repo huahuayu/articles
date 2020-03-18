@@ -3,7 +3,7 @@
 [//category]:(mac)
 [//tags]:(U盘,mac,分区,格式化)
 [//createTime]:(20200312)
-[//lastUpdateTime]:(20200318)
+[//updateTime]:(20200318)
 ## 概述
 今天用[Mac制作Linux启动U盘](#)过程中，急着出门，直接把U盘拔下来了，之后U盘不能访问也无法被格式化。  
 

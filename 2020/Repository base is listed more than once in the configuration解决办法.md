@@ -3,7 +3,7 @@
 [//category]:(centos,yum,problem-solved)
 [//tags]:(centos,yum)
 [//createTime]:(20200318)
-[//lastUpdateTime]:(20200318)
+[//updateTime]:(20200318)
 
 ## 概述
 使用`yum check-update`命令时，提示"Repository base is listed more than once in the configuration"  

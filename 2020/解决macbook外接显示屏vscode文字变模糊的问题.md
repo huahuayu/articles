@@ -3,7 +3,7 @@
 [//category]:(vscode,problem,problem-solved)
 [//tags]:(vscode)
 [//createTime]:(20200120)
-[//lastUpdateTime]:(20200120)
+[//updateTime]:(20200120)
 ## 概述
 一段时间来我发现我的macbook pro外接显示器的时候，不管是在公司还是家里，如果vscode是开着的，再接显示屏里面的字会变模糊。只有关闭vscode再重新打开文字才清晰。别的应用没有发现这样的情况。
 

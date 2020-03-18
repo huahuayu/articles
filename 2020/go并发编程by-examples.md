@@ -3,7 +3,7 @@
 [//category]:(go,tutorial,concurrent-programming)
 [//tags]:(go,waitgroup,golang,goroutine,匿名函数,闭包,closure,竞态条件,channel)
 [//createTime]:(2020-01-21)
-[//lastUpdateTime]:(2020-01-21)
+[//updateTime]:(2020-01-21)
 ## 概述
 并发是go的一个吸引开发者的特性，也是一个难点，以下整理自我在公司的一个内部分享，全部都是以示例的形式进行说明，有兴趣跑一下就掌握了。
 

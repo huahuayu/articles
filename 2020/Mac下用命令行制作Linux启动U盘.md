@@ -3,7 +3,7 @@
 [//category]:(mac)
 [//tags]:(usb启动盘)
 [//createTime]:(20200312)
-[//lastUpdateTime]:(20200313)
+[//updateTime]:(20200313)
 ## 概述
 家里有台闲置的Mac mini，我想给它装上linux系统做服务器用，以往我都是用软碟通(UltraISO)制作U盘启动盘。这次试下在Mac下用命令行做启动盘，本文记录整个过程。  
 
