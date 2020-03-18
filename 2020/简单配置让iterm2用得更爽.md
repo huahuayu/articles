@@ -3,7 +3,7 @@
 [//category]:(mac,iterm2)
 [//tags]:(mac,iterm2,dotfiles)
 [//createTime]:(20200115)
-[//lastUpdateTime]:(20200115)
+[//lastUpdateTime]:(20200318)
 ## 概述
 `iterm2`比mac原生的terminal好用很多，是mac下必装的软件之一，装好后简单配置就用的很爽了。我个人的配置主要有以下方面，供参考：
 
@@ -56,8 +56,12 @@ iterm的默认字体是Monaco，Monaco的中文本来也还行，但是如果将
 ![](https://cdn.liushiming.cn/img/20200112200627.png)
 
 ## 设置vim支持鼠标滚动
-关闭`mouse reporting`后，vim编辑时就不支持鼠标滚动了，但是iterm2可以设置通过发送j/k键来支持滚动，`iterm2 > preferences > advance > 搜索mouse > scroll whell down 那里写\j > scroll whell up那里写\k`
+关闭`mouse reporting`后，vim编辑时就不支持鼠标滚动了，但是iterm2可以设置通过发送j/k键来支持滚动，`preferences > advance > 搜索mouse > scroll whell down 那里写\j > scroll whell up那里写\k`
 ![](https://cdn.liushiming.cn/img/iterm2scroll.jpg)
+
+## 设置无限向上滚动
+有时候terminal上输出的内容很多，需要向上滚动查看输出历史，建议设置无限滚动  `preferences > Profiles > Terminal > Unlimited scrollback`  
+![](https://cdn.liushiming.cn/img/20200318174737.png)
 
 ## 备份配置
 自己的配置最好备份好，下次有需要再导入即可，体验保持一致。
