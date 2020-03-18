@@ -17,6 +17,7 @@
 | git init                                          | Initialize git repository                                |
 | git status                                        | File status i.e. modified and untracked etc.             |
 | git add .                                         | Add all untracked files                                  |
+| git add -u                                        | Add all tracked files and ignore untracked               |
 | git add file1 file2                               | Add (stage) file1 and file2                              |
 | git rm –cached file1                              | Remove the staged file file1                             |
 | git commit -m “commit message”                    | Commit stage file with ‘commit message’                  |
@@ -98,6 +99,11 @@ git config --global core.quotepath false
 git mv file1 file2
 ```  
 
+## 将已跟踪文件的变更加入暂存
+已跟踪的文件变更加入暂存，忽略未跟踪的文件   
+``` 
+git add -u
+```
 
 ### 回退操作
 **场景一：**    
