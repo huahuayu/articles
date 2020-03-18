@@ -35,6 +35,7 @@
 | git reset HEAD~1 --soft                           | abort current commit, without losing the changes         |
 | git checkout file1                                | Remove changes from non-staged file1 to previous commit  |
 | git rm file1                                      | Delete file1 from git (but available in previous commit  |
+| git mv file1 file2                                | rename file1 to file2                                    |
 | git branch                                        | Show all the branches                                    |
 | git branch branch1                                | Create branch1                                           |
 | git branch -d branch1                             | Delete branch1                                           |
@@ -46,7 +47,7 @@
 | **Remote repository**                             |                                                          |
 | git remote add repoName https://url_of_repo       | Add remote repo with name ‘repoName’                     |
 | git remote -v                                     | Show list of added repoNames                             |
-| git remote set-url origin git@{new_repo_name}.git                    | change remote repo url to track     |
+| git remote set-url origin git@{new_repo_name}.git | change remote repo url to track                          |
 | git remote remove repoName                        | Remove repoName from list                                |
 | git push repoName branch1                         | Push ‘branch1’ to ‘repoName’                             |
 | git push repoName –all                            | Push all branches to repoName                            |
@@ -89,6 +90,12 @@ git remote set-url origin git@{new_repo_name}.git
 git status中文显示为8进制编码，如果要正常显示，可使用命令
 ```
 git config --global core.quotepath false
+```  
+
+## git重名文件
+用git管理的文件不能直接右键重命名，否则会被当成删除旧文件再新增一个文件，git下重命名文件应该用下面的方式  
+```
+git mv file1 file2
 ```  
 
 
