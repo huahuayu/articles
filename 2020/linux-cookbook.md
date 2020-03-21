@@ -3,7 +3,7 @@
 [//category]:(linux,tutorial)
 [//tags]:(linux)
 [//createTime]:(20200218)
-[//updateTime]:(20200218)
+[//updateTime]:(20200321)
 ## 查看linux版本
 方法一  
 ``` zsh
@@ -1013,6 +1013,13 @@ udp        0      0 127.0.0.1:123           0.0.0.0:*
 udp        0      0 0.0.0.0:123             0.0.0.0:*
 udp6       0      0 :::30303                :::*
 udp6       0      0 :::123                  :::*
+```
+
+以下服务是只对localhost相应端口服务的，外网访问不到  
+```
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp6       0      0 :::18333                :::*                    LISTEN
+tcp6       0      0 :::30303                :::*                    LISTEN
 ```
 
 或使用 ss -lntu
