@@ -64,5 +64,11 @@ tcp6       0      0 :::3289                 :::*                    LISTEN      
 或者，如果你安装了GUI，那么可以通过`yum install policycoreutils-gui`安装SELinux configuration GUI包，然后运行`system-config-selinux`命令来打开图形界面。在左侧的网络端口菜单中，可以配置SELinux端口，如下所示  
 ![](https://cdn.liushiming.cn/img/20200321155342.png)
 
+## 移除端口
+为mysql移除3289端口  
+``` bash
+semanage port -d -t mysqld_port_t -p tcp 3289
+```
+
 ## 参考资料
 [Use SELinux Port Labeling To Allow Services To Use Non-Standard Ports](https://www.rootusers.com/use-selinux-port-labeling-to-allow-services-to-use-non-standard-ports/)
