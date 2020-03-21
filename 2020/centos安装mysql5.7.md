@@ -107,6 +107,32 @@ mysqld_port_t                  tcp      1186, 3306, 63132-63164
 
 如果想自定义端口，请参考：[centos设置服务使用非标准端口](https://liushiming.cn/2020/03/21/use-selinux-port-labeling-to-allow-services-to-use-non-standard-ports/)  
 
+### 开启远程连接
+在`/etc/my.cn`中增加`bind-address = 0.0.0.0`  
+
+重启mysql服务`systemctl restart mysql`  
+
+检查端口监听情况`netstat -tunlp | grep mysqld`
+未开启远程连接前     
+```
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp6       0      0 :::3306                :::*                    LISTEN      30820/mysqld
+```
+
+开启远程连接后  
+``` bash
+$ netstat -tunlp | grep mysqld
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:3306           0.0.0.0:*               LISTEN      29714/mysqld
+```
+
+telnet测试  
+``` bash
+$ telnet your_public_ip mysql_port
+```
+
+如果telnet不通，报错"No route to host"，应该是防火墙阻挡了，请参考 [centos firewalld防火墙管理](https://liushiming.cn/2020/03/21/centos-firewalld-management) - 开放端口章节。 
+
 ## 参考资料
 [MySQL 5.7 Reference Manual](https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html)  
 [How to Install MySQL 5.7 on Linux CentOS and Ubuntu](https://www.howtoforge.com/tutorial/how-to-install-mysql-57-on-linux-centos-and-ubuntu/)  
