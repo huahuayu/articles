@@ -39,6 +39,11 @@ sudo yum erase docker-engine-selinux
 sudo yum erase docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
 ```
 
+或者  
+```
+sudo yum remove docker docker-common docker-selinux docker-engine
+```
+
 然后再重试安装  
 ``` bash
 sudo yum install docker-ce  
@@ -64,7 +69,7 @@ systemctl enable docker
 systemctl status docker
 ```
 
-## docker hello world
+## 验证docker安装
 跑一个docker hello world  
 ```
 docker run hello-world
