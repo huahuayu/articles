@@ -9,6 +9,7 @@
 本文记录用docker安装gitlab再使用nginx代理访问的过程  
 
 主要内容包括：  
+
 - docker中安装gitlab
 - 安装命令解释  
 - 使用nginx代理gitlab 80端口和22端口
@@ -117,7 +118,7 @@ server{
 
 因为如果不代理22端口，则gitlab的ssh clone/push不能用  
 
-ssh是tcp协议而非http协议，所以不能和80端口代理配置方式不同    
+ssh是tcp协议而非http协议，所以和80端口代理配置不同    
 
 在`/etc/nginx/nginx.conf`插入  
 ```
