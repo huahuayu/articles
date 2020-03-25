@@ -285,6 +285,11 @@ shiming@pro ➜  ~ docker container logs ce47
 172.17.0.1 - - [28/Feb/2019:10:26:31 +0000] "GET / HTTP/1.1" 304 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" "-"
 ```
 
+follow查看最后100行日志  
+``` zsh
+$ docker logs --tail 100 -f <container>
+```
+
 ## 删除容器
 `docker container rm <container1> <container2>...` 或者 `docker rm` rm只能删除已经停止运行的容器，加上option `-f`可以强行删除
 ``` zsh
@@ -1197,6 +1202,12 @@ chtijbug/drools-platform-docker           Drools Platform Container             
 
 ## docker储存(todos)
 https://docs.docker.com/storage/  
+
+## docker更新container端口绑定
+更新已启动的container绑定  
+`/var/lib/docker/containers/[hash_of_the_container]/hostconfig.json`
+参考资料: [How do I assign a port mapping to an existing Docker container?
+](https://stackoverflow.com/questions/19335444/how-do-i-assign-a-port-mapping-to-an-existing-docker-container)
 
 ## 常用软件
 ### jenkins
