@@ -3,7 +3,7 @@
 [//category]:(linux,tutorial)
 [//tags]:(linux)
 [//createTime]:(20200218)
-[//updateTime]:(20200321)
+[//updateTime]:(20200327)
 ## 查看linux版本
 方法一  
 ``` zsh
@@ -571,19 +571,19 @@ https://help.aliyun.com/document_detail/25426.html
 1. 将本地文件复制到远程
 ```
 # 将本地文件file1.txt复制到远程服务器家目录下
-$ scp file1.txt root@47.52.241.187:~
+$ scp -P <sshport> file1.txt root@47.52.241.187:~
 ```
 
 2. 将本地文件夹复制到远程(-r选项)
 ```
 # 将本地文件夹dir1复制到远程家目录
-$ scp -r dir1 root@47.52.241.187:~
+$ scp -P <sshport> -r dir1 root@47.52.241.187:~
 ```
 
 3. 将远程文件复制到本地
 ```
 # 将远程文件file2.txt 复制到本地工作目录
-$ scp root@47.52.241.187:~/file2.txt .
+$ scp -P <sshport> root@47.52.241.187:~/file2.txt .
 ```
 4. 将远程文件夹复制到本地
 ```
@@ -592,7 +592,7 @@ $ scp -P <sshport> -r root@47.52.241.187:~/dir1 .
 ```
 5. 将多个本地文件复制到远程
 ```
-Shimings-Air:0-transfer Shiming$ scp file4 file5 root@47.52.241.187:~
+Shimings-Air:0-transfer Shiming$ scp -P <sshport> file4 file5 root@47.52.241.187:~
 # 只要输一次密码
 Enter passphrase for key '/Users/Shiming/.ssh/id_rsa': 
 file4                                         100%    0     0.0KB/s   00:00    
@@ -602,7 +602,7 @@ file5                                         100%    0     0.0KB/s   00:00
 6. 将多个远程文件复制到本地
 ```
 # 几个文件就输几次密码
-Shimings-Air:~ Shiming$ scp root@47.52.241.187:~/{file1.txt,file2.txt} .
+Shimings-Air:~ Shiming$ scp -P <sshport> root@47.52.241.187:~/{file1.txt,file2.txt} .
 Enter passphrase for key '/Users/Shiming/.ssh/id_rsa': 
 file1.txt                                     100%   26     0.3KB/s   00:00    
 Enter passphrase for key '/Users/Shiming/.ssh/id_rsa': 
