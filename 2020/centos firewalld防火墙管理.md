@@ -109,6 +109,16 @@ $ firewall-cmd --list-services
 dhcpv6-client http ssh
 ```
 
+### 查看服务的标准端口
+使用`semanage port -l | grep [service_name]`查看服务的标准端口（默认允许使用）  
+``` bash
+$ semanage port -l | grep mysqld
+mysqld_port_t                  tcp      1186, 3306, 63132-63164
+```
+
+### 设置服务使用非标准端口
+参见[centos设置服务使用非标准端口](https://liushiming.cn/2020/03/21/use-selinux-port-labeling-to-allow-services-to-use-non-standard-ports/)
+
 ## 端口
 ### 开放端口
 开放单个端口 
