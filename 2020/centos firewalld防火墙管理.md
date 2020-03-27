@@ -3,7 +3,7 @@
 [//category]:(linux,centos,network)
 [//tags]:(linux,centos,firewalld,network,zone,service,port)
 [//createTime]:(2020-03-21)
-[//updateTime]:(2020-03-21)
+[//updateTime]:(2020-03-27)
 
 ## 概述
 centos 7默认使用`firewalld`作为防火墙服务。firewalld与iptables不兼容，它们不应该一起使用。
