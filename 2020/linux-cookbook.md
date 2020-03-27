@@ -568,29 +568,37 @@ https://help.aliyun.com/document_detail/25426.html
 
 ### 远程文件传输
 在本地terminal下执行scp命令
+
 1. 将本地文件复制到远程
+
 ```
 # 将本地文件file1.txt复制到远程服务器家目录下
 $ scp -P <sshport> file1.txt root@47.52.241.187:~
 ```
 
 2. 将本地文件夹复制到远程(-r选项)
+
 ```
 # 将本地文件夹dir1复制到远程家目录
 $ scp -P <sshport> -r dir1 root@47.52.241.187:~
 ```
 
 3. 将远程文件复制到本地
+
 ```
 # 将远程文件file2.txt 复制到本地工作目录
 $ scp -P <sshport> root@47.52.241.187:~/file2.txt .
 ```
+
 4. 将远程文件夹复制到本地
+
 ```
 # 将远程目录dir1复制到本地当前工作目录
 $ scp -P <sshport> -r root@47.52.241.187:~/dir1 .
 ```
+
 5. 将多个本地文件复制到远程
+
 ```
 Shimings-Air:0-transfer Shiming$ scp -P <sshport> file4 file5 root@47.52.241.187:~
 # 只要输一次密码
@@ -600,6 +608,7 @@ file5                                         100%    0     0.0KB/s   00:00
 ```
 
 6. 将多个远程文件复制到本地
+
 ```
 # 几个文件就输几次密码
 Shimings-Air:~ Shiming$ scp -P <sshport> root@47.52.241.187:~/{file1.txt,file2.txt} .
