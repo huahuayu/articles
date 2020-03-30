@@ -3,7 +3,7 @@
 [//category]:(git,tutorial)
 [//tags]:(git)
 [//createTime]:(20200301)
-[//updateTime]:(20200318)
+[//updateTime]:(20200330)
 ## git命令
 
 | 命令                                              | 描述                                                     |
@@ -88,9 +88,16 @@ git remote set-url origin git@{new_repo_name}.git
 
 ## 实用技巧
 ### git status中文显示问题
-git status中文显示为8进制编码，如果要正常显示，可使用命令
+git status/git log中文显示为8进制编码，如果要正常显示，可使用命令
 ```
-git config --global core.quotepath false
+git config --global core.quotepath false 
+git config --global gui.encoding utf-8
+git config --global i18n.commit.encoding utf-8 
+git config --global i18n.logoutputencoding utf-8 
+# bash 环境下
+export LESSCHARSET=utf-8
+# cmd环境下：
+set LESSCHARSET=utf-8
 ```  
 
 ## git重名文件
