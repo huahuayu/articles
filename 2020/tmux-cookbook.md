@@ -1,9 +1,9 @@
 [//title]:(tmux-cookbook)
 [//englishTitle]:(tmux-cookbook)
-[//category]:(tmux,tutorial)
+[//category]:(tmux,tutorial,cookbook)
 [//tags]:(ssh,tmux)
 [//createTime]:(20190322)
-[//updateTime]:(20200309)
+[//updateTime]:(20200402)
 # tmux cookbook
 tmux是一个终端多路复用工具，使用它可以在一个窗口里打开多个终端，ssh连接到远程服务器时特别好用。    
 
@@ -65,7 +65,7 @@ tmux -V
 
 ## 推荐配置
 tmux的默认配置文件位置为`~/.tmux.conf`    
-```
+``` text
 # setw -g mode-keys vi
 
 # 使用`代替ctrl+b,按两下`输出`字符
@@ -168,55 +168,55 @@ $ tmux ls
 
 ## 窗口（如同浏览器tab）
 ### 新建窗口
-```
+``` text
 prefix + c
 ```
 
 ### 切换窗口
-```
+``` text
 prefix + [0~9]
 ```
 
 ### 重命名窗口
-```
+``` text
 prefix + ,
 ```
 
 ### 删除窗口
-```
+``` text
 prefix + &
 ```
 
 ## 窗格（一个大窗分成几个格）
 水平分隔窗格
-```
+``` text
 prefix + -
 ```
 
 垂直分隔窗格
-```
+``` text
 prefix + |
 ```
 
 移动窗格
-```
+``` text
 prefix + hjkl
 prefix + ↑↓←→
 ```
 
 缩放窗格
-```
+``` text
 prefix + z (z for zoom) # 有多个窗格的情况下，聚焦正在工作的窗格  
 ``` 
 
 置换窗格
-```
+``` text
 prefix + { # 向前置换
 prefix + } # 向后置换
 ```
 
 调整窗格边界
-```
+``` text
 prefix + KJHL # 上下左右调整面板边界
 ```
 
@@ -228,7 +228,7 @@ prefix + KJHL # 上下左右调整面板边界
 
 ## 自动使用tmux
 将以下配置加入服务器的`~/.bash_profile`或 `~/.zsh_profile`文件中, 只要一登录服务器就会自动使用tmux（Mac也适用）    
-```
+``` text
 if [ -z "$TMUX" ]; then
     tmux attach -t 0 || tmux new -s 0
 fi

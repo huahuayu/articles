@@ -1,10 +1,12 @@
 [//title]:(nginx-cookbook)
 [//englishTitle]:(nginx-cookbook)
-[//category]:(nginx,tutorial)
+[//category]:(nginx,tutorial,cookbook)
 [//tags]:(nginx)
 [//createTime]:(20190601)
-[//updateTime]:(20200308)
+[//updateTime]:(20200402)
 # nginx cookbook
+## 常用命令  
+
 ## nginx架构
 Nginx的代码是由一个核心和一系列的模块组成。  
 
@@ -99,12 +101,12 @@ Nginx 本身做的工作实际很少，当它接到一个 HTTP 请求时，它
 
 语法:
 
-```
+``` text
 index file ...;
 ```
 配置范例：
 
-```
+``` text
 location / {
     index index.$geo.html index.html;
 }
@@ -122,13 +124,13 @@ location / {
 
 例子：
 
-```
+``` text
 index index.$geo.html index.0.html /index.html;
 ```
 
 需要注意的是，`index` 文件会引发内部重定向，请求可能会被其它 `location` 处理。 比如，下面这个例子：
 
-```
+``` text
 location = / {
     index index.html;
 }
@@ -144,7 +146,7 @@ location / {
 
 配置范例：
 
-```
+``` text
 log_format  gzip '$remote_addr-$remote_user[$time_local]' '$request$status $bytes_sent' '"$ http _ referer" "$http_user_agent" "$gzip_ratio"';
 
 access_log  /spool/logs/nginx-access.log  gzip  buffer=32k;
@@ -153,7 +155,7 @@ access_log  /spool/logs/nginx-access.log  gzip  buffer=32k;
 **（1）`access_log` 指令**
 语法:
 
-```
+``` text
 access_log path [format [buffer=size]];
 # or
 access_log off;
@@ -173,7 +175,7 @@ access_log off;
 **（2）`log_format` 指令**
 语法：
 
-```
+``` text
 log_format name format [format ...];
 ```
 
@@ -190,7 +192,7 @@ log_format name format [format ...];
 规则为：顺序匹配，以第一次匹配到的结果为准。
 配置范例：
 
-```
+``` text
 location / {
   deny    192.168.1.1;
   allow   192.168.1.0/24;
@@ -201,7 +203,7 @@ location / {
 在上面的例子中，仅允许网段 10.1.1.0/16 和 192.168.1.0/24 中除 192.168.1.1 之外的 ip 访问。
 
 **（1）放行语法**
-```
+``` text
 allow address | CIDR | all;
 ```
 在上面的配置范例中， 192.168.1.1 为 address，192.168.1.0/24 为 CIDR，all 对应 all。
@@ -211,7 +213,7 @@ allow address | CIDR | all;
 指令功能：`allow` 描述的网络地址有权直接访问
 
 **（2）禁止语法**
-```
+``` text
 deny address | CIDR | all;
 ```
 作用域: `http, server, location, limit_except`
@@ -227,7 +229,7 @@ deny address | CIDR | all;
 利用正则的匹配，分组和引用，达到目的
 配置范例：
 
-```
+``` text
 if ($http_user_agent ~ MSIE) {
   rewrite  ^(.*)$  /msie/$1  break;
 }
@@ -253,7 +255,7 @@ if ($invalid_referer) {
 **（1）if 语句块**
 语法:
 
-```
+``` text
 if (condition) { 
   ... 
 }
@@ -266,7 +268,7 @@ if (condition) {
 **（2）return 语句**
 语法:
 
-```
+``` text
 return code;
 ```
 
@@ -280,7 +282,7 @@ return code;
 **（3）rewrite 语句**
 语法:
 
-```
+``` text
 rewrite regex replacement flag
 ```
 
@@ -331,7 +333,7 @@ rewrite可以用来防sql注入攻击。
 
 语法:
 
-```
+``` text
 upstream name { 
   ...
 }
@@ -340,7 +342,7 @@ upstream name {
 
 配置范例：
 
-```
+``` text
 upstream backend  {
   server backend1.example.com weight=5;
   server backend2.example.com:8080;
@@ -358,7 +360,7 @@ server {
 
 语法:
 
-```
+``` text
 upstream name { ... }
 ```
 作用域: `http`
@@ -371,7 +373,7 @@ upstream name { ... }
 
 示例：
 
-```
+``` text
 upstream backend {
   server backend1.example.com weight=5;
   server 127.0.0.1:8080 max_fails=3  fail_timeout=30s;
@@ -383,7 +385,7 @@ upstream backend {
 
 作用域： upstream
 
-```
+``` text
 upstream backend {
   ip_hash;
   server   backend1.example.com;
@@ -401,7 +403,7 @@ upstream backend {
 
 如果其中一个服务器想暂时移除，应该加上 down 参数。这样可以保留当前客户端 IP 地址散列分布。就像这样：
 
-```
+``` text
 upstream backend {
   ip_hash;
   server   backend1.example.com;
@@ -414,7 +416,7 @@ upstream backend {
 **（3） server 指令**
 语法:
 
-```
+``` text
 server address [parameters];
 ```
 
@@ -428,7 +430,7 @@ server address [parameters];
 
 实例：
 
-```
+``` text
 upstream  backend  {
   server   backend1.example.com    weight=5;
   server   127.0.0.1:8080          max_fails=3  fail_timeout=30s;
@@ -466,7 +468,7 @@ nginx的配置文件在`/etc/nginx`或者`/usr/local/etc/nginx/`(Mac使用brew�
 nginx启动时读的第一个文件就是`/etc/nginx/nginx.conf`，不建议直接修改主配置文件。自定义配置建议放在`/etc/nginx/conf.d/`目录下。
 
 主配置文件解析：  
-```
+``` text
 # worker用户
 user www-data; 
 
@@ -574,6 +576,26 @@ stream {
 #	}
 #}
 
+```
+
+## unknown directive “stream” in /etc/nginx/nginx.conf:xx
+``` text
+load_module /usr/lib/nginx/modules/ngx_stream_module.so;
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+
+events {
+    worker_connections 768;
+    # multi_accept on;
+}
+
+stream {
+    server {
+        listen  22;
+        proxy_pass i.liushiming.cn:2202;
+    }
+}
 ```
 
 ## 参考资料

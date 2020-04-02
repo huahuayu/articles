@@ -14,7 +14,7 @@ macOS 10.15.2
 
 ## 解决方法
 在terminal中执行以下命令，重启vscode，以后再连屏幕应该不会了。
-```
+``` text
 defaults write com.microsoft.VSCode.helper CGFontRenderingFontSmoothingDisabled -bool NO
 ```
 

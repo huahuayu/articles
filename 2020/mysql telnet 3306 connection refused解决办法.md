@@ -3,7 +3,7 @@
 [//category]:(mysql,troubleshoot,problem-solved)
 [//tags]:(mysql,telnet)
 [//createTime]:(20190927)
-[//updateTime]:(20200327)
+[//updateTime]:(20200402)
 
 ## 问题描述
 mysql看起来在公网提供服务  
@@ -19,7 +19,7 @@ tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN      
 ## 解决办法
 **修改bind-address** 
 
-```
+``` bash
 vi /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
 

@@ -3,7 +3,7 @@
 [//category]:(mac)
 [//tags]:(U盘,mac,分区,格式化)
 [//createTime]:(20200312)
-[//updateTime]:(20200318)
+[//updateTime]:(20200402)
 ## 概述
 今天用[Mac制作Linux启动U盘](#)过程中，急着出门，直接把U盘拔下来了，之后U盘不能访问也无法被格式化。  
 
@@ -18,12 +18,12 @@
 既然格式化不了就只能重新分区了  
 
 分区命令  
-```
+``` bash
 diskutil partitionDisk MountPoint [numberOfPartitions] [APM|MBR|GPT] [part1Format part1Name part1Size part2Format part2Name part2Size part3Format part3Name part3Size ...]
 ```
 
 我执行的命令是  
-```
+``` bash
 diskutil partitionDisk /dev/disk2 1 MBRFormat "MS-DOS FAT32" UDISK 8GB
 ```
 

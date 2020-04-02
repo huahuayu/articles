@@ -3,7 +3,7 @@
 [//category]:(wordpress,php,nginx)
 [//tags]:(wordpress,migration,fastcgi_pass,php,nginx)
 [//createTime]:(20200330)
-[//updateTime]:(20200330)
+[//updateTime]:(20200402)
 
 ## 概述
 最近买了个性能更好的服务器（之前用轻量级服务器），但是阿里云不支持从轻量级服务器无缝迁移到ecs，所以应用迁移需要自己折腾一番。  
@@ -21,6 +21,8 @@
 ### 文件迁移
 www目录下的wordpress目录通过scp整体迁移到新服务器  
 
+chown迁移数据的用户和用户组  
+
 ### 环境准备
 版本信息  
 ``` text
@@ -34,7 +36,7 @@ nginx 1.16.1
 
 ### nginx迁移
 ubuntu下的配置`/etc/nginx/sites-enabled/wordpress`  
-```
+``` text
 server {
     listen 80;
     listen [::]:80;
@@ -67,7 +69,7 @@ server {
 ```
 
 迁移到centos下的配置    
-```
+``` text
 server {
     listen 80;
     listen [::]:80;
@@ -100,10 +102,13 @@ server {
 }
 ```
 
-
-
 ### ssl证书
-解决ssl证书在新服务器上自动续期的问题  
+
+- 将ssl证书文件拷贝到新服务器上  
+- 解决ssl证书在新服务器上自动续期的问题  
+
+### 修改dns解析
+将域名A记录解析到新的服务器  
 
 ### 参考资料
 [migrating wordpress website](https://www.wpexplorer.com/migrating-wordpress-website/)  
@@ -132,7 +137,7 @@ listen = 127.0.0.1:9000
 ```
 
 其实要fastcgi_pass使用socket也可以（而且效率更高），但是需要php-fpm配置  
-```
+``` text
 listen = /var/run/php-fpm.sock
 listen.owner = nginx  # 此owner要和nginx的user一样
 listen.group = nginx
@@ -140,7 +145,7 @@ listen.mode = 0660
 ```
 
 修改配置后重启php-fpm  
-```
+``` bash
 systemctl restart php-fpm
 ```
 

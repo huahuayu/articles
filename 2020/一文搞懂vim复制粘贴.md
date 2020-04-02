@@ -3,7 +3,8 @@
 [//category]:(vim,problem,problem-solved)
 [//tags]:(vim)
 [//createTime]:(20200118)
-[//updateTime]:(20200118)
+[//updateTime]:(20200402)
+
 ## 概述
 复制粘贴是文本编辑最常用的功能，但是在vim中复制粘贴还是有点麻烦的，有一点学习成本。本文总结了使用vim复制粘贴的典型场景和使用方法，希望对读者有帮助。
 
@@ -43,7 +44,7 @@
 
 vim提供12个剪贴板，它们的名字分别为vim有11个粘贴板，分别是`0`、`1`、`2`、`...`、`9`、`a`、`“`。如果开启了系统剪贴板，则会另外多出两个：`+`和`*`。使用`:reg`命令，可以查看各个粘贴板里的内容。
 
-```
+``` text
 :reg
 ```
 
@@ -90,7 +91,7 @@ VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Jun 07 2019 15:35:43)
 
 ### 设置vim默认使用系统剪贴板
 确定vim支持`+clipboard`后，如果想`y/p`直接和系统剪贴板打通，可以在`~/.vimrc`中加上以下配置）：
-```
+``` text
 set clipboard^=unnamed,unnamedplus
 ```
 其中unnamed代表`*`寄存器，unnamedplus代表`+`寄存器。在mac系统中，两者都一样；一般在linux系统中`+`和`*`是不同的，`+`对应`ctrl + c`,`ctrl + v`的桌面系统剪贴板，`*`对应[x桌面系统](https://en.wikipedia.org/wiki/X_Window_System)的剪贴板（用鼠标选择复制，用鼠标中键粘贴）。
@@ -104,7 +105,7 @@ set clipboard^=unnamed,unnamedplus
 
 * vim配置中开启鼠标支持，`.vimrc`文件中加上
 
-```
+``` text
 set mouse=a
 ```
 * terminal客户端关闭`mouse reporting`选项，否则鼠标点击vim界面会进入visual模式。参见我这篇文章[解决iterm2中vim选中文字不能复制的问题](https://liushiming.cn/2020/01/18/%e8%a7%a3%e5%86%b3iterm2%e4%b8%advim%e9%80%89%e4%b8%ad%e6%96%87%e5%ad%97%e4%b8%8d%e8%83%bd%e5%a4%8d%e5%88%b6%e7%9a%84%e9%97%ae%e9%a2%98/)
@@ -113,7 +114,7 @@ set mouse=a
 #### 本地vim通过scp编辑远程文件
 使用本地vim通过scp直接编辑远程文件。这样就可以使用本地寄存器`"+y"`复制了。这种方法对远程vim配置没有要求。
 
-```
+``` text
 vim scp://remoteuser@server.com//absolute/path/to/file
 ```
 *注意com和absolute间是两个反斜杠`//`并不是敲错了。*

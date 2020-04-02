@@ -3,11 +3,11 @@
 [//category]:(nginx,troubleshoot,problem-solved)
 [//tags]:(nginx,ngx_stream_module)
 [//createTime]:(20200318)
-[//updateTime]:(20200327)
+[//updateTime]:(20200402)
 
 ## 问题描述
 今天在nginx.con文件里加`stream`段落做tcp 22端口的反向代理  
-```
+``` text
 stream {
     server {
         listen  22;
@@ -23,12 +23,12 @@ unknown directive “stream” in /etc/nginx/nginx.conf:xx
 
 ## 解决办法
 在nginx.conf顶端插入下面这句，加载`ngx_stream_module`模块  
-```
+``` text
 load_module /usr/lib/nginx/modules/ngx_stream_module.so;
 ```
 
 测试一下，没问题了  
-```
+``` bash
 $ nginx -t
 ```
 
