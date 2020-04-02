@@ -3,7 +3,7 @@
 [//category]:(linux,centos,network)
 [//tags]:(linux,centos,firewalld,network,zone,service,port)
 [//createTime]:(2020-03-21)
-[//updateTime]:(2020-03-27)
+[//updateTime]:(2020-04-02)
 
 ## 概述
 centos 7默认使用`firewalld`作为防火墙服务。firewalld与iptables不兼容，它们不应该一起使用。
@@ -42,7 +42,7 @@ $ firewall-cmd --list-all
 ```
 
 ### 改变默认zone
-```
+``` bash
 $ firewall-cmd --set-default-zone=work
 ```
 
@@ -50,17 +50,17 @@ $ firewall-cmd --set-default-zone=work
 
 ### 查看指定网卡用哪个zone
 先用`ifconfig`查看有哪些网卡，然后用下面的命令查看网卡使用哪个zone    
-```
+``` bash
 $ firewall-cmd --get-zone-of-interface=lo
 ```
 
 ### 给网卡设置zone
-```
+``` bash
 $ firewall-cmd --zone=public --add-interface=lo
 ```
 
 ### 改变网卡zone
-```
+``` bash
 $ firewall-cmd --zone=work --change-interface=lo
 ```
 
@@ -70,7 +70,7 @@ firewall-cmd --zone=work --remove-interface=lo
 ```
 
 ### 查看所有网卡所在的zone
-```
+``` bash
 $ firewall-cmd --get-active-zones
 work
   interfaces: lo
@@ -83,7 +83,7 @@ public
 
 ### 开放服务
 开放http服务  
-```
+``` bash
 $ firewall-cmd --permanent --add-service=http
 success
 $ firewall-cmd --reload
@@ -96,7 +96,7 @@ success
 
 ### 关闭服务
 关闭http服务  
-```
+``` bash
 $ firewall-cmd --permanent --remove-service=http
 success
 $ firewall-cmd --reload
@@ -104,7 +104,7 @@ success
 ```
 
 ### 查看开放的服务
-```
+``` bash
 $ firewall-cmd --list-services
 dhcpv6-client http ssh
 ```
@@ -156,7 +156,7 @@ success
 ```
 
 ### 查看开放的端口
-```
+``` bash
 $ firewall-cmd --list-ports
 63150/tcp
 ```

@@ -3,7 +3,7 @@
 [//category]:(docker,tutorial)
 [//tags]:(docker,install docker)
 [//createTime]:(20190318)
-[//updateTime]:(20200318)
+[//updateTime]:(20200402)
 
 ## 概述
 centos用命令行安装docker很简单，比ubuntu下简单    
@@ -25,7 +25,7 @@ sudo yum install docker-ce
 
 ## 卸载旧版本(可选)
 如果安装过程中有类似报错是因为有旧版本    
-```
+``` text
 Transaction check error:
   file /usr/bin/docker from install of docker-ce-17.12.0.ce-1.el7.centos.x86_64 conflicts with file from package docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
   file /usr/bin/docker-containerd from install of docker-ce-17.12.0.ce-1.el7.centos.x86_64 conflicts with file from package docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
@@ -34,13 +34,13 @@ Transaction check error:
 ```
 
 卸载旧版本  
-```
+``` bash
 sudo yum erase docker-engine-selinux
 sudo yum erase docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
 ```
 
 或者  
-```
+``` bash
 sudo yum remove docker docker-common docker-selinux docker-engine
 ```
 
@@ -50,7 +50,7 @@ sudo yum install docker-ce
 ```
 
 ## 查看docker版本
-```
+``` bash
 docker -v
 ```
 
@@ -71,7 +71,7 @@ systemctl status docker
 
 ## 验证docker安装
 跑一个docker hello world  
-```
+``` bash
 docker run hello-world
 ```
 

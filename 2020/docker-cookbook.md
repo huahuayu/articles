@@ -1,9 +1,9 @@
 [//title]:(docker-cookbook)
 [//englishTitle]:(docker-cookbook)
-[//category]:(docker,tutorial)
+[//category]:(docker,tutorial,cookbook)
 [//tags]:(docker)
 [//createTime]:(20190301)
-[//updateTime]:(20200312)
+[//updateTime]:(20200402)
 ## 安装docker
 ### mac版本
 直接去官方下载dmg安装文件 https://hub.docker.com/editions/community/docker-ce-desktop-mac，下载前会要求你注册一个docker.com的账号
@@ -29,7 +29,7 @@ sudo docker run hello-world
 ```
 
 如果出现以下返回则安装成功，这个输出还简单解释了docker的工作原理：
-```
+``` bash
 root@MNG-BC ➜  ~ docker run hello-world
 Unable to find image 'hello-world:latest' locally
 latest: Pulling from library/hello-world
@@ -191,7 +191,7 @@ b46fee7c3a8434d1ba6e7bb9b1e5f3161188319a981f117c99cf6698eb1db29b
 ## docker命令自动补全
 安装docker后默认是没有docker相关命令行自动补全的，需要自己安装，可以参考[官方说明](https://docs.docker.com/compose/completion/)
 以zsh为例，如果使用的是oh-my-zsh配置，则只需要在~/.zshrc开启插件：
-``` vim
+``` bash
 plugins=(... docker docker-compose
 )
 ```
@@ -387,7 +387,7 @@ shiming@pro ➜  ~ docker container inspect mongo
 
 ## 设置环境变量
 `-e`可以在容器运行时指定容器的环境变量，如以下命令即指定环境变量`MYSQL_RANDOM_ROOT_PASSWORD`为true：  
-```
+``` bash
 docker container run -d --name mysql -e MYSQL_RANDOM_ROOT_PASSWORD=true -p 3307:3306 mysql   # 3307是主机端口，3306docker端口，将3306映射到主机3307
 ```
 
@@ -395,7 +395,7 @@ docker container run -d --name mysql -e MYSQL_RANDOM_ROOT_PASSWORD=true -p 3307:
 ![](https://github.com/huahuayu/img/blob/master/20190302073127.png?raw=true)  
 
 也可以通过`MYSQL_ROOT_PASSWORD`直接指定mysql root密码  
-```
+``` bash
 docker container run -d --name mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3307:3306 mysql   # 3307是主机端口，3306docker端口，将3306映射到主机3307
 ```
 
@@ -511,7 +511,7 @@ Status: Downloaded newer image for alpine:latest
 ```
 
 建议拉取指定版本，而不是直接拉取latest版，latest是相对的  
-```
+``` zsh
 docker pull sonarqube:6.7.6-community   #冒号后面就是版本号
 ```
 
@@ -531,7 +531,7 @@ eosio/eos           v1.4.2              9e4bb39a8e25        4 months ago        
 
 ## 查看image history
 `docker image history <image>`  可以查看image的创建历史，只有最上层的image layer有image id，底层layer不需要id。  
-```
+``` zsh
 shiming@pro ➜  ~ docker image history nginx
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
 8c9ca4d17702        3 months ago        /bin/sh -c #(nop)  CMD ["nginx" "-g" "daemon…   0B
@@ -548,7 +548,7 @@ IMAGE               CREATED             CREATED BY                              
 ## 查看image详细信息
 `docker image inspect <image>` 可以查看image的详细信息(元数据)  
 
-```
+``` zsh
 shiming@pro ➜  ~ docker image inspect nginx
 [
     {
@@ -664,7 +664,7 @@ shiming@pro ➜  ~ docker image inspect nginx
 
 ## 给image tag重命名
 `docker image tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]` 会新建一个image，以前的image不会被删除，是会新建一个image  
-```
+``` zsh
 shiming@pro ➜  ~ docker image ls
 REPOSITORY                        TAG                 IMAGE ID            CREATED             SIZE
 jboss/jbpm-workbench-showcase     latest              ee46864cbe36        12 days ago         1GB
@@ -680,7 +680,7 @@ debian                            latest              8d31923452f8        4 week
 
 ## 登录docker hub
 `docker login`可以登录docker hub，登录了docker hub之后可以push image到自己的docker hub，相应的`docker logout`是登出  
-```
+``` zsh
 shiming@pro ➜  ~ docker login
 Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
 Username: huahuayu
@@ -692,7 +692,7 @@ Removing login credentials for https://index.docker.io/v1/
 
 ## docker push
 `docker push`和`git push`类似，可以将本地的image push到docker hub上（push前先用`docker login`登录）。push后可以在https://cloud.docker.com/repository/list查看push上来的image。  
-```
+``` zsh
 shiming@pro ➜  ~ docker push huahuayu/alpine
 The push refers to repository [docker.io/huahuayu/alpine]
 503e53e365f3: Mounted from library/alpine
@@ -1191,7 +1191,7 @@ COMMANDS
 
 ## 搜索image
 `docker search <image>`
-```
+``` zsh
 root@df ➜  ~ docker search drools
 NAME                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
 jboss/drools-workbench-showcase           Drools Workbench Showcase                       67                                      [OK]

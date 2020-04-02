@@ -3,7 +3,7 @@
 [//category]:(gitlab,docker,nginx,git)
 [//tags]:(gitlab,docker,nginx,install)
 [//createTime]:(20190325)
-[//updateTime]:(20200325)
+[//updateTime]:(20200402)
 
 ## 概述
 本文记录用docker安装gitlab再使用nginx代理访问的过程  
@@ -65,17 +65,17 @@ gitlab_shell_ssh_port：定义ssh clone的端口，默认22
 如果启动时不加`--env`参数，也可以在容器启动后在容器内的`/etc/gitlab/gitlab.rb`修改配置文件  
 
 进入容器  
-```
+``` zsh
 docker exec -it gitlab /bin/bash
 ```
 
 在容器内部修改`gitlab.rb`配置文件 
-```
+``` zsh
 vim /etc/gitlab/gitlab.rb
 ```
 
 修改external_url参数(一定要带协议名http/https)  
-```
+``` text
 external_url 'http://git.liushiming.cn'
 ```
 
@@ -84,7 +84,7 @@ external_url 'http://git.liushiming.cn'
 
 ### 代理80端口
 新建`/etc/nginx/sites-enabled/gitlab`
-```
+``` text
 upstream  git{
     # 域名对应 docker宿主机域名
     # 端口对应 docker宿主机映射域名
@@ -121,7 +121,7 @@ server{
 ssh是tcp协议而非http协议，所以和80端口代理配置不同    
 
 在`/etc/nginx/nginx.conf`插入  
-```
+``` text
 stream {
      server {
          listen  22;
@@ -132,12 +132,12 @@ stream {
 
 `nginx -t`如果报错`unknown directive “stream”`，在`nginx.conf`第一行插入下面这行，加载ngx_stream_module模块    
 
-```
+``` text
 load_module /usr/lib/nginx/modules/ngx_stream_module.so;
 ```
 
 22端口被代理转发之后，git push会报警告，`yes`继续连接即可    
-```
+``` bash
 $ git push
 Warning: the ECDSA host key for 'git.liushiming.cn' differs from the key for the IP address '47.107.78.234'
 Offending key for IP in /Users/shiming/.ssh/known_hosts:64
@@ -146,7 +146,7 @@ Are you sure you want to continue connecting (yes/no)? yes
 ```
 
 将`~/.ssh/known_hosts`文件中的冲突的ip地址公钥删除  
-```
+``` bash
 ssh-keygen -R 47.107.78.234
 ```
 

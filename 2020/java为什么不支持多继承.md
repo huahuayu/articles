@@ -3,7 +3,7 @@
 [//category]:(java)
 [//tags]:(java)
 [//createTime]:(20200223)
-[//updateTime]:(20200223)
+[//updateTime]:(20200402)
 ## 概述
 多重继承是面向对象概念的一个特性，其中一个类可以继承多个父类的属性。当超类和子类中都存在具有相同签名的方法时，就会出现问题。在调用该方法时，编译器无法确定要调用哪个类方法，甚至在调用哪个类方法时也无法确定优先级。
 
@@ -44,18 +44,18 @@ class Son extends Parent1, Parent2 {
 ```
 
 输出：  
-```
+``` text
 compile error
 ```
 
 以上例子可以看出，当多个父类有同样的方法签名时，子类将不知道调用哪一个父类的方法。  
 
 ## 钻石问题
-```
+``` text
           GrandParent
            /     \
           /       \
-      Parent1      Parent2
+      Parent1   Parent2
           \       /
            \     /
              Son

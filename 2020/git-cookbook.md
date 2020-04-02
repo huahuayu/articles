@@ -1,9 +1,9 @@
 [//title]:(git-cookbook)
 [//englishTitle]:(git-cookbook)
-[//category]:(git,tutorial)
+[//category]:(git,tutorial,cookbook)
 [//tags]:(git)
 [//createTime]:(20200301)
-[//updateTime]:(20200330)
+[//updateTime]:(20200402)
 ## git命令
 
 | 命令                                              | 描述                                                     |
@@ -60,7 +60,7 @@
 
 ## 连接远程repo
 ### Existing folder
-```
+``` bash
 cd existing_folder
 git init
 git remote add origin git@git/remote/repo.git
@@ -70,7 +70,7 @@ git push -u origin master
 ```
 
 ### Existing Git repository
-```
+``` bash
 cd existing_repo
 git remote rename origin old-origin
 git remote add origin git@git/remote/repo.git
@@ -89,7 +89,7 @@ git remote set-url origin git@{new_repo_name}.git
 ## 实用技巧
 ### git status中文显示问题
 git status/git log中文显示为8进制编码，如果要正常显示，可使用命令
-```
+``` bash
 git config --global core.quotepath false 
 git config --global gui.encoding utf-8
 git config --global i18n.commit.encoding utf-8 
@@ -102,28 +102,28 @@ set LESSCHARSET=utf-8
 
 ## git重名文件
 用git管理的文件不能直接右键重命名，否则会被当成删除旧文件再新增一个文件，git下重命名文件应该用下面的方式  
-```
-git mv file1 file2
+``` bash
+$ git mv file1 file2
 ```  
 
 ## 将已跟踪文件的变更加入暂存
 已跟踪的文件变更加入暂存，忽略未跟踪的文件   
-``` 
-git add -u
+``` bash
+$ git add -u
 ```
 
 ### 回退操作
 **场景一：**    
 文件已经commit，甚至push，现在希望以后不再跟踪，且要从repo中删除。   
 首先将文件添加到`.gitignore`然后执行以下命令。  
-```
+``` bash
 $ git rm --cached <file-name>
 # 支持通配符
 $ git rm --cached *.log
 ```
 
 如果是文件夹  
-```
+``` bash
 $ git rm -r --cached directory/
 ```
 
@@ -132,7 +132,7 @@ $ git rm -r --cached directory/
 **场景二：**  
 文件已经添加到stage，还未commit，但暂时不想提交，想从staged状态变为unstaged状态，文件变更不丢失。  
 
-```
+``` bash
 # unstage一个文件
 $ git reset HEAD <file-name>
 # unstage所有文件
@@ -148,18 +148,18 @@ git reset HEAD~1 --soft
 
 **场景四：**  
 放弃当前所有变更，回退到上一个commit版本  
-```
+``` bash
 $ git reset --hard
 ```
 
 放弃所有变更，回退到指定版本
-```
+``` bash
 $ git reset --hard <commit-id>
 ```
 
 **场景五：**  
 放弃已经track的，但是没有在stage的文件变更，已经在stage的文件保持不变(比`git reset --hard`要安全)   
-```
+``` bash
 # 单个文件
 $ git checkout -- <file-name>
 # 所有文件
@@ -170,12 +170,12 @@ $ git checkout -- .
 取消当前merge  
 
 git版本 >= 1.6.1  
-``` 
+``` bash
 git reset –merge 
 ```
 
 或者git版本 >= 1.7.4  
-```
+``` bash
 git merge --abort
 ```
 

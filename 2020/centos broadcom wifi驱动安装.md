@@ -3,7 +3,7 @@
 [//category]:(centos,linux,tutorial)
 [//tags]:(centos,wifi,driver,broadcom,mac)
 [//createTime]:(20190318)
-[//updateTime]:(20200318)
+[//updateTime]:(20200402)
 
 ## 概述
 家里有一台闲置的Mac mini，我给它装上Centos 7做服务器用，它的无线网卡型号为[broadcom BCM4331](https://www.broadcom.com/products/wireless/wireless-lan-infrastructure/bcm4331)，centos默认不带这个无线网卡驱动，需要自己安装。  
@@ -62,7 +62,7 @@ centos 7 http://elrepo.org/linux/elrepo/el7/SRPMS/wl-kmod-6_30_223_271-5.el7.elr
 ## 编译kmod-wl
 使用普通用户构建kmod-wl  
 
-``` 
+``` bash
 rpmbuild --rebuild --define 'packager <your-name>' /<path-to-nosrc.rpm>/wl-kmod*nosrc.rpm
 ```
 

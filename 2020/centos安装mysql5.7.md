@@ -3,7 +3,7 @@
 [//category]:(linux,centos,mysql)
 [//tags]:(linux,centos,mysql)
 [//createTime]:(2020-03-21)
-[//updateTime]:(2020-03-21)
+[//updateTime]:(2020-04-02)
 
 ## 概述
 本文介绍如何在centos 7系统中安装mysql 5.7  
@@ -100,7 +100,7 @@ $ systemctl restart mysql
 ```
 
 **注意：** centos的安全模块SElinux比较严格，它设定了mysql的可用端口为1186，3306以及63132~63164，所以端口最好设在这个范围里  
-```
+``` bash
 $ semanage port -l | grep mysqld
 mysqld_port_t                  tcp      1186, 3306, 63132-63164
 ```
@@ -114,7 +114,7 @@ mysqld_port_t                  tcp      1186, 3306, 63132-63164
 
 检查端口监听情况`netstat -tunlp | grep mysqld`
 未开启远程连接前     
-```
+``` text
 Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
 tcp6       0      0 :::3306                :::*                    LISTEN      30820/mysqld
 ```

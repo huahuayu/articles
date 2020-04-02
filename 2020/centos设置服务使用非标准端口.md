@@ -3,7 +3,7 @@
 [//category]:(centos,selinux)
 [//tags]:(centos,selinux,port)
 [//createTime]:(2020-03-21)
-[//updateTime]:(2020-03-21)
+[//updateTime]:(2020-04-02)
 
 ## 概述
 centos下的SELinux有一系列默认的安全规则，SELinux允许特定的服务使用特定的端口（且只能使用这些端口），这样做可以防止恶意程序绑定在预定义的的端口来增强系统安全性。  
@@ -12,13 +12,13 @@ centos下的SELinux有一系列默认的安全规则，SELinux允许特定的服
 
 ## 非默认端口启动服务
 mysql默认端口为3306，修改端口为3289后通过`systemctl restart mysqld`重启报错: 
-```
+``` bash
 $ systemctl restart mysqld
 Job for mysqld.service failed because the control process exited with error code. See "systemctl status mysqld.service" and "journalctl -xe" for details.
 ```
 
 `journalctl -xe`查看错误日志  
-```
+``` bash
 $ journalctl -xe
 SELinux is preventing /usr/sbin/mysqld from name_bind access on the tcp_socket port 3289.
 ```
@@ -43,7 +43,7 @@ tcp6       0      0 :::1186                 :::*                    LISTEN      
 ## 使用非标准端口
 将非标准端口添加到允许的端口列表命令为  
 ``` bash
-semanage port -a -t PORT_TYPE -p tcp PORT  # PORT_TYPE 为端口的标签，PORT是想要添加的端口号  
+$ semanage port -a -t PORT_TYPE -p tcp PORT  # PORT_TYPE 为端口的标签，PORT是想要添加的端口号  
 ```
 
 为了将mysql更改为使用非标准端口，我们必须更改SELinux策略并指定允许使用特定端口，以3289为例    

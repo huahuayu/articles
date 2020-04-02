@@ -1,9 +1,9 @@
 [//title]:(linux-cookbook)
 [//englishTitle]:(linux-cookbook)
-[//category]:(linux,tutorial)
+[//category]:(linux,tutorial,cookbook)
 [//tags]:(linux)
 [//createTime]:(20200218)
-[//updateTime]:(20200327)
+[//updateTime]:(20200402)
 ## 查看linux版本
 方法一  
 ``` zsh
@@ -89,7 +89,7 @@ Linux MNG-BC 4.4.0-142-generic #168-Ubuntu SMP Wed Jan 16 21:00:45 UTC 2019 x86_
 `lshw`命令可以查看硬件信息  
 
 `lscpu`命令可以查看cpu信息
-```
+``` bash
 root@MNG-BC ➜  ~ lscpu
 Architecture:          x86_64
 CPU op-mode(s):        32-bit, 64-bit
@@ -119,7 +119,7 @@ Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca 
 
 
 `cat /proc/cupinfo`可以查看cpu信息，每一个核心都会列出来，以`core id`区分
-```
+``` bash
 root@MNG-BC ➜  ~ cat /proc/cpuinfo
 processor       : 0
 vendor_id       : GenuineIntel
@@ -151,7 +151,7 @@ power management:
 
 ## 系统时间 - date
 
-```
+``` bash
 [shiming@red-hat-enterprise-linux ~]$ date        #打印系统时间
 2018年 07月 25日 星期三 19:38:53 CST
 [shiming@red-hat-enterprise-linux ~]$ date +%x    #打印日期
@@ -173,7 +173,7 @@ http://man7.org/linux/man-pages/man7/locale.7.html
 
 ## 系统语言 - LANG
 ### 修改系统语言
-```
+``` bash
 [shiming@red-hat-enterprise-linux ~]$ cat /etc/locale.conf  #查看linux系统语言设置
 LANG=en_US.UTF-8                                            #修改语言只需修改这行    
 [shiming@red-hat-enterprise-linux ~]$ echo $LANG            #查看ssh语言环境变量设置
@@ -183,7 +183,7 @@ zh_CN.UTF-8                   #系统为英文，但ssh设置为中文，所以�
 
 ### 使用本机或服务器语言
 mac为例，在本机中 vi /etc/ssh/ssh_config,如果希望在ssh连接中传入loacle环境变量，则放开注释，否则用#号注释以下行（使用服务器的系统语言）
-```
+``` text
        SendEnv LANG LC_*
 ```
 
@@ -196,14 +196,14 @@ redhat中有三种主机名类型：--pretty, --static, and --transient， [参�
 | Pretty            | Assigned by the system admin. Its can be used as Description like “Oracle DB server” |
 
 ### 查看和修改主机名
-```
+``` bash
 [shiming@red-hat-enterprise-linux ~]$ hostnamectl          #查看所有主机名
 [shiming@red-hat-enterprise-linux ~]$ hostnamectl set-hostname redhat  #修改主机名（三个主机名都改为redhat）
 [shiming@redhat ~]$                              #修改后重启，主机名变了
 ```
 
 ### 修改主机名(临时修改)
-```
+``` bash
 [shiming@red-hat-enterprise-linux ~]$ hostname            #查看主机名
 red-hat-enterprise-linux.shared
 [shiming@red-hat-enterprise-linux ~]$ hostname redhat     #修改主机名为redhat
@@ -264,7 +264,7 @@ Linux不以文件名后缀来识别文件类型，通过file命令可以查看�
 | text       | 可读文本                                       |
 | executable | 可执行文件                                     |
 | data       | 除此之外的叫做data，一般是二进制的或不可打印的 |
-```
+``` bash
 [shiming@redhat ~]$ file /etc/passwd
 /etc/passwd: ASCII text
 [shiming@redhat ~]$ file /bin/passwd
@@ -273,7 +273,7 @@ Linux不以文件名后缀来识别文件类型，通过file命令可以查看�
 ## 文件统计 - wc
 wc for word count, print newline, word, and byte counts for each file
 
-```
+``` bash
 [shiming@redhat ~]$ wc /etc/passwd        
   46  100 2426 /etc/passwd                  #行数，word数，byte数，文件名
 [shiming@redhat ~]$ wc -l /etc/passwd       #只打印行数
@@ -281,7 +281,7 @@ wc for word count, print newline, word, and byte counts for each file
 ```
 ## 磁盘使用情况
 `df`显示磁盘使用情况，默认大小为bytes，加上`-h`参数使用更适于人类阅读的方式展示
-```
+``` bash
 root@mix2 ➜  bitcoin df -h
 Filesystem      Size  Used Avail Use% Mounted on
 udev             16G     0   16G   0% /dev
@@ -297,7 +297,7 @@ tmpfs           3.2G     0  3.2G   0% /run/user/1002
 ```
 ## 文件大小
 `du`命令查看文件大小, `du -h`, h means human readable,默认
-```
+``` bash
 root@mix2 ➜  bitcoin du --max-depth=0 -h
 273G	.
 root@mix2 ➜  bitcoin du --max-depth=1 -h
@@ -310,7 +310,7 @@ root@mix2 ➜  bitcoin du --max-depth=1 -h
 ## 文件打印
 ### 开头 - head
 默认打印开头10行
-```
+``` bash
 [shiming@redhat ~]$ head /etc/passwd        #头10行
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
@@ -324,7 +324,7 @@ mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
 operator:x:11:0:operator:/root:/sbin/nologin
 ```
 可指定打印行数 - head -n [linenum]
-```
+``` bash
 [shiming@redhat ~]$ head -n 5 /etc/passwd    #头5行
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
@@ -336,7 +336,7 @@ lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
 ### 末尾 - tail
 
 默认打印末尾10行
-```
+``` bash
 [shiming@redhat ~]$ tail /etc/passwd
 nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
 pcp:x:990:985:Performance Co-Pilot:/var/lib/pcp:/sbin/nologin
@@ -350,7 +350,7 @@ tcpdump:x:72:72::/:/sbin/nologin
 shiming:x:1000:1000:Shiming Liu:/home/shiming:/bin/bash
 ```
 指定打印行数 - tail -n [linenum]
-```
+``` bash
 [shiming@redhat ~]$ tail -n 5 /etc/passwd
 postfix:x:89:89::/var/spool/postfix:/sbin/nologin
 sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
@@ -360,7 +360,7 @@ shiming:x:1000:1000:Shiming Liu:/home/shiming:/bin/bash
 ```
 
 打印整个文件内容 - cat [filename]
-```
+``` bash
 [shiming@redhat ~]$ tail /etc/passwd
 ```
 
@@ -390,7 +390,7 @@ http://www.pathname.com/fhs/
 | /usr/sbin/ | 供root用户使用的二进制文件                                                                                                                                                                                                        |
 
 ### 打印当前工作目录
-```
+``` bash
 [shiming@redhat tmp]$ pwd
 /tmp
 ```
@@ -399,7 +399,7 @@ http://www.pathname.com/fhs/
 常用参数
 ![](https://raw.githubusercontent.com/huahuayu/img/master/20190423222908.png)
 
-```
+``` bash
 [shiming@redhat ~]$ mkdir tmp
 [shiming@redhat ~]$ ls
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  tmp  Videos
@@ -427,7 +427,7 @@ dir1
 ```
 
 ### 文件列表 - ls
-```
+``` bash
 [shiming@redhat ~]$ ls -l                               #长列表
 [shiming@redhat ~]$ ls -a                               #显示包括隐藏文件
 [shiming@redhat ~]$ ls -R                               #递归列表（包含子文件夹）
@@ -447,7 +447,7 @@ drwxrwxr-x. 3 shiming shiming 4096 Jul 26 22:25 ..
 ```
 
 ls可以一次性列出几个文件夹中的文件
-```
+``` bash
 [shiming@redhat ~]$ ls -l Music Pictures Videos         #列出N个文件夹
 Music:
 total 0
@@ -466,7 +466,7 @@ total 0
 ```
 
 ls -h列出文件大小为人眼可读的(B,K,M,G)
-```
+``` bash
 shiming@pro ➜  asset-platform git:(master) ls -alh
 total 24
 drwxr-xr-x@  6 shiming  staff   192B Apr 18 10:50 .
@@ -477,7 +477,7 @@ drwxr-xr-x@ 13 shiming  staff   416B Apr 22 20:12 .git
 drwxr-xr-x@  7 shiming  staff   224B Apr 22 20:10 docs
 ```
 ### 切换目录
-```
+``` bash
 [shiming@redhat tmp]$ cd /    
 [shiming@redhat /]$ cd ~/tmp  
 [shiming@redhat tmp]$ cd -      #切到上一个工作目录
@@ -491,17 +491,17 @@ lost+found  shiming
 ```
 
 ### 新建文件 - touch
-```
+``` bash
 [shiming@redhat tmp]$ touch tmp1     #tmp1不存在则新建，存在则将文件的时间戳更新为当前时间
 ```
 新建多个文件
-```
+``` bash
 [shiming@redhat tmp]$ touch file1 file2
 ```
 
 
 使用大括号新建多个文件
-```
+``` bash
 [shiming@redhat ~]$ touch file{1..5}       #如果文件名有规则的话可以这么建
 [shiming@redhat ~]$ ls -l
 -rw-rw-r--. 1 shiming shiming    0 Jul 28 09:41 file1
@@ -522,6 +522,7 @@ lost+found  shiming
 
 
 ### 文件管理命令
+
 | 文件管理命令               | 单一来源                                             | 多来源                     |
 | -------------------------- | ---------------------------------------------------- | -------------------------- |
 | 复制文件                   | cp file1 file2                                       | cp file1 file2 file3 dir④  |
@@ -541,7 +542,7 @@ lost+found  shiming
 ⑥**使用“创建父级”选项时应小心；无法捕获键入错误。**
 
 ### 文件软链接
-```
+``` bash
 ~/.oh-my-zsh/themes/
 ```
 
@@ -571,35 +572,35 @@ https://help.aliyun.com/document_detail/25426.html
 
 1. 将本地文件复制到远程
 
-```
+``` bash
 # 将本地文件file1.txt复制到远程服务器家目录下
 $ scp -P <sshport> file1.txt root@47.52.241.187:~
 ```
 
 2. 将本地文件夹复制到远程(-r选项)
 
-```
+``` bash
 # 将本地文件夹dir1复制到远程家目录
 $ scp -P <sshport> -r dir1 root@47.52.241.187:~
 ```
 
 3. 将远程文件复制到本地
 
-```
+``` bash
 # 将远程文件file2.txt 复制到本地工作目录
 $ scp -P <sshport> root@47.52.241.187:~/file2.txt .
 ```
 
 4. 将远程文件夹复制到本地
 
-```
+``` bash
 # 将远程目录dir1复制到本地当前工作目录
 $ scp -P <sshport> -r root@47.52.241.187:~/dir1 .
 ```
 
 5. 将多个本地文件复制到远程
 
-```
+``` bash
 Shimings-Air:0-transfer Shiming$ scp -P <sshport> file4 file5 root@47.52.241.187:~
 # 只要输一次密码
 Enter passphrase for key '/Users/Shiming/.ssh/id_rsa': 
@@ -609,7 +610,7 @@ file5                                         100%    0     0.0KB/s   00:00
 
 6. 将多个远程文件复制到本地
 
-```
+``` bash
 # 几个文件就输几次密码
 Shimings-Air:~ Shiming$ scp -P <sshport> root@47.52.241.187:~/{file1.txt,file2.txt} .
 Enter passphrase for key '/Users/Shiming/.ssh/id_rsa': 
@@ -626,7 +627,7 @@ https://www.tecmint.com/add-users-in-linux/
 https://www.tecmint.com/usermod-command-examples/
 
 ### 修改密码 - passwd
-```
+``` bash
 [shiming@red-hat-enterprise-linux ~]$ passwd      #修改当前用户密码
 更改用户 shiming 的密码 。
 为 shiming 更改 STRESS 密码。
@@ -640,7 +641,7 @@ https://www.tecmint.com/usermod-command-examples/
 `su - anotheruser` 使用新用户的环境变量
 
 ### 锁住用户
-```
+``` bash
 root@tool1:~# passwd -l bot  #-l means lock, lock后仍可以使用su - username切换用户
 ```
 
@@ -658,7 +659,7 @@ userdel --remove tecmint           [On RedHat/CentOS based systems]
 
 ### 查看当前登录用户
 `w`命令可以查看当前登录用户
-```
+``` bash
 shiming@pro ➜  ~ w
 23:22  up 12:42, 3 users, load averages: 2.12 1.77 1.84
 USER     TTY      FROM              LOGIN@  IDLE WHAT
@@ -669,7 +670,7 @@ shiming  s002     -                10:55       1 ssh root@ubuntu
 
 ### 查看登录记录
 `last`，`last <user_name>`可以查看登录记录，包括重启/关机记录  
-```
+``` bash
 shiming@pro ➜  ~ last
 shiming   ttys001                   Tue Mar 26 11:19   still logged in
 shiming   ttys002                   Tue Mar 26 10:55   still logged in
@@ -681,13 +682,13 @@ shutdown  ~                         Tue Mar 26 10:17
 
 ### 禁止用户ssh登录
 编辑`/etc/ssh/sshd_config`文件，在最后加上`DenyUsers`配置（如已存在，复用即可）    
-```
+``` bash
 # deny user ssh login
 DenyUsers user1 user2 user3
 ```
 
 重启ssh服务
-```
+``` bash
 sudo systemctl reload ssh
 ```
 
@@ -698,14 +699,14 @@ sudo systemctl reload ssh
 
 1. 如果是禁止个别用户/组 
 在最后加上`Match`段，在里面加上  
-```
+``` bash
 # disable ssh login by password for some user
 Match User user1
     PasswordAuthentication no
     ChallengeResponseAuthentication no
 ```
 
-```
+``` bash
 # disable ssh login by password for some group
 Match Group group1
     PasswordAuthentication no
@@ -713,18 +714,18 @@ Match Group group1
 ```
 
 2. 如果禁止所有用户密码登录，将以下参数都改为no  
-```
+``` bash
 PasswordAuthentication no
 ChallengeResponseAuthentication no
 ```
 
 重启ssh服务  
-```
+``` bash
 sudo systemctl reload ssh
 ```
 
 无证书登录时会报错  
-```
+``` bash
 shiming@pro ➜  ~ ssh shiming@ubuntu
 shiming@ubuntu: Permission denied (publickey).
 ```
@@ -740,16 +741,16 @@ DSHELL=/bin/zsh
 ```
 
 如果使用`useradd`添加用户则修改`/etc/default/useradd`
-```
+``` bash
 SHELL=/bin/sh
 ```
 改为
-```
+``` bash
 SHELL=/bin/zsh
 ```
 
 通过以上步骤，新用户确实默认使用zsh，但是因为没有配置`~/.zshrc`文件，新用户在首次登陆的时候zsh会出以下提示,不是太友好：
-```
+``` bash
 This is the Z Shell configuration function for new users,
 zsh-newuser-install.
 You are seeing this message because you have no zsh startup files
@@ -780,7 +781,7 @@ SKEL=/etc/skel
 这个路径的含义就是，凡是放到这个目录下的文件，都会拷贝到新用户家目录。
 
 新建用户blog做测试，注意`Copying files from /etc/skel`会有这一句。
-```
+``` bash
 root@sz ➜  ~ adduser blog
 Adding user `blog' ...
 Adding new group `blog' (1001) ...
@@ -795,7 +796,7 @@ systemd vs init.d
 
 ## 软件安装
 ### 二进制包
-```
+``` bash
 tar xzf bitcoin-0.14.2-x86_64-linux-gnu.tar.gz
 sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-0.14.2/bin/*
 ```
@@ -809,7 +810,7 @@ sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-0.14.2/bin/*
 ## 命令替换
 
 当命令包含反引号（注意，不是单引号），或$(command)时，允许命令替换
-```
+``` bash
 [shiming@redhat ~]$ echo today is `date +%A`    #反引号和单引号容易引起混淆
 today is Saturday
 [shiming@redhat ~]$ echo today is $(date +%A)   #建议使用$(command)
@@ -818,7 +819,7 @@ today is Saturday
 
 ## 命令历史
 ### 打印命令行历史
-```
+``` bash
 [shiming@redhat ~]$ history
   189  wc -l /etc/passwd
   190  man wc
@@ -833,7 +834,7 @@ today is Saturday
 ```
 
 ### 执行历史命令行
-```
+``` text
   193  history
   194  ls /etc/passwd
   195  mkdir tmp
@@ -863,7 +864,7 @@ http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html
 ### systemd
 http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html
 systemd示例配置1
-```
+``` text
 [Unit]
 Description=ropsten
 After=network.target
@@ -880,7 +881,7 @@ WantedBy=multi-user.target
 ```
 
 systemd示例配置2
-```
+``` text
 [Unit]
 Description=openresty A high performance web server and a reverse proxy server
 After=network.target
@@ -905,7 +906,7 @@ WantedBy=multi-user.target
 Systemd 默认从目录/etc/systemd/system/读取配置文件。但是，里面存放的大部分文件都是符号链接，指向目录/usr/lib/systemd/system/，真正的配置文件存放在那个目录。
 
 systemctl enable命令用于在上面两个目录之间，建立符号链接关系。
-```
+``` bash
 $ sudo systemctl enable clamd@scan.service
 # 等同于
 $ sudo ln -s '/usr/lib/systemd/system/clamd@scan.service' '/etc/systemd/system/multi-user.target.wants/clamd@scan.service'
@@ -913,12 +914,12 @@ $ sudo ln -s '/usr/lib/systemd/system/clamd@scan.service' '/etc/systemd/system/m
 如果配置文件里面设置了开机启动，systemctl enable命令相当于激活开机启动。
 
 与之对应的，systemctl disable命令用于在两个目录之间，撤销符号链接关系，相当于撤销开机启动。
-```
+``` bash
 $ sudo systemctl disable clamd@scan.service
 ```
 
 列出所有配置文件
-```
+``` bash
 # 列出所有配置文件
 $ systemctl list-unit-files
 
@@ -927,7 +928,7 @@ $ systemctl list-unit-files --type=service
 ```
 
 这个命令会输出一个列表
-```
+``` bash
 $ systemctl list-unit-files
 
 UNIT FILE              STATE
@@ -937,7 +938,7 @@ clamd@scan.service     disabled
 ```
 
 这个列表显示每个配置文件的状态，一共有四种。
-```
+``` text
 enabled：已建立启动链接
 disabled：没建立启动链接
 static：该配置文件没有[Install]部分（无法执行），只能作为其他配置文件的依赖
@@ -946,37 +947,37 @@ masked：该配置文件被禁止建立启动链接
 ```
 
 启动服务
-```
+``` bash
 systemctl start xxx.service
 ```
 
 查看服务状态
-```
+``` bash
 systemctl status xxx.service
 ```
 
 reload systemctl配置
-```
+``` bash
 systemctl daemon-reload  #一旦修改配置文件，就要让 SystemD 重新加载配置文件，然后重新启动，否则修改不会生效。
 ```
 
 重启服务
-```
+``` bash
 systemctl restart xxx.service
 ```
 
 停止服务
-```
+``` bash
 systemctl stop xxx.service
 ```
 
 看所有systemctl的日志(启动失败的时候可以来这里看)
-```
+``` bash
 journalctl -xef
 ```
 
 看指定service的日志
-```
+``` bash
 journalctl -u servicename
 ```
 
@@ -1025,7 +1026,7 @@ udp6       0      0 :::123                  :::*
 ```
 
 以下服务是只对localhost相应端口服务的，外网访问不到  
-```
+``` text
 Proto Recv-Q Send-Q Local Address           Foreign Address         State
 tcp6       0      0 :::18333                :::*                    LISTEN
 tcp6       0      0 :::30303                :::*                    LISTEN
@@ -1076,7 +1077,7 @@ netstat -ntpl (TCP类型的端口)
 
 ### 阿里云安全组策略
 如果阿里云安全组里没有开放端口，即便服务在本机端口绑定了，外网也无法访问  
-```
+``` bash
 shiming@pro ➜  telnet 120.79.226.111 9009
 Trying 120.79.226.111...
 telnet: connect to address 120.79.226.111: Operation timed out
@@ -1216,7 +1217,7 @@ traceroute to 47.75.70.201 (47.75.70.201), 64 hops max, 52 byte packets
 
 ## alias
 别名可以定义在.zshrc或.bashrc中方便一些操作  
-```
+``` text
 # add python3.7 to path
 export PATH=/usr/local/Cellar/python/3.7.1/bin:$PATH
 export PATH=/usr/local/Cellar/python/3.7/bin:$PATH
@@ -1296,7 +1297,7 @@ john@ubuntu:~$ echo $PATH
 `~/.local`目录是使用systemd linux发行版都会有的一个目录
 
 ### 参数说明
-```
+``` text
 -p
 List of all names that are exported in the current shell
 -n
@@ -1307,7 +1308,7 @@ Names are exported as functions
 
 ### export作用解析
 没用export前
-```
+``` bash
 [shiming@redhat ~]$ name=shiming            #设置变量name=shimiing
 [shiming@redhat ~]$ echo $name              #在当前进程下输出
 shiming                                     #正确输出
@@ -1318,7 +1319,7 @@ shiming                                     #正确输出
 ```
 
 用了export后
-```
+``` bash
 [shiming@redhat ~]$ name=shiming            #设置变量name=shiming
 [shiming@redhat ~]$ echo $name              #当前进程输出
 shiming                                     #正确输出
@@ -1330,12 +1331,12 @@ shiming                                     #正确输出
 
 ### append to the PATH
 给PATH加一个路径，用冒号分隔
-```
+``` text
 $ export PATH=$PATH:/home/himanshu/practice/
 ```
 
 ### 固化环境变量
-```
+``` text
 export name="xiongxiong"                        #在~/.bashrc文件末尾加上这句
 [shiming@redhat shiming]$ echo $name            #打印为空
 
@@ -1398,20 +1399,20 @@ PID    COMMAND      %CPU TIME     #TH    #WQ  #PORTS MEM    PURG   CMPRS  PGRP  
 
 
 ### 查看指定进程
-```
+``` bash
 [shiming@redhat profile.d]$ ps -p 1        #查看pid = 1的进程信息
   PID TTY          TIME CMD
     1 ?        00:00:03 systemd
 ```
 
 ### 打印当前进程id
-```
+``` bash
 [shiming@redhat profile.d]$ echo $$        #两个美元符号打印当前进程名
 19376
 ```
 
 ### 查询子进程信息
-```
+``` bash
 [shiming@redhat profile.d]$ echo $$        #当前进程
 19376
 [shiming@redhat profile.d]$ bash           #新起一个子进程
@@ -1428,26 +1429,26 @@ https://www.thegeekstuff.com/2010/05/unix-background-job/
 
 ## vim
 ### 系统自带教程
-```
+``` bash
 [shiming@redhat ~]$ vimtutor
 ```
 ### vim复制内容到Mac系统剪贴板
 mac自带的vim位于/usr/bin目录下，这个版本不支持将vim中的内容复制到系统剪贴板
 如何查看是否支持复制到剪贴板：
-```
+``` bash
 vim --version
 ```
 如果出现`+clipboard`则支持,出现`-clipboard`则不支持
 所以需要自己重新安装vim, `brew install vim --with-client-server`  
 安装后需要做两件事：
 1. 做一个软连接到/usr/local/bin, 这样就会使用新装的vim，因为/usr/local/bin在path中比/usr/bin更靠前
-```
+``` text
 ln -sf /usr/local/Cellar/vim/8.1.0600_1/bin/vim /usr/local/bin/vim
 ln -sf /usr/local/Cellar/vim/8.1.0600_1/bin/vim /usr/local/bin/vi
 ```
 
 2.还需要修改~/.vimrc文件，加上下面这行  
-```
+``` text
 set clipboard=unnamed
 ```
 
@@ -1468,7 +1469,7 @@ tee – the output of write (:w) command is redirected using tee
 `set relativenumber`可以开启相对行号
 
 以下.vimrc配置可以在normal模式下显示相对行号，insert模式下现在正常行号  
-```
+``` text
 set nu
 augroup relative_numbser
     autocmd!
@@ -1577,7 +1578,7 @@ normal模式和插入模式指针形状如果没有区别（normal模式方块�
 
 ### vim中文乱码
 如果vim中文乱码，在用户家目录下新建.vimrc文件，填入以下内容  
-```
+``` text
 set fileencodings=utf-8,gbk,utf-16le,cp1252,iso-8859-15,ucs-bom
 set termencoding=utf-8
 set encoding=utf-8
@@ -1587,7 +1588,7 @@ set encoding=utf-8
 
 ## 获取帮助
 ### 搜索帮助主题
-```
+``` bash
 [shiming@redhat ~]$ man -k passwd         #搜索与关键字passwd有关的帮助       
 chpasswd (8)         - update passwords in batch mode
 fgetpwent_r (3)      - get passwd file entry reentrantly
@@ -1616,7 +1617,7 @@ lppasswd (1)         - add, change, or delete digest passwords.
 
 ### pinfo
 pinfo提供更详细的帮助文档
-```
+``` bash
 [shiming@redhat doc]$ pinfo vim
 ```
 
@@ -1630,7 +1631,7 @@ pinfo提供更详细的帮助文档
 
 ### 重定向
 #### stdout重定向，>覆盖写，>>追加写
-```
+``` bash
 [shiming@redhat doc]$ echo "hello" > /tmp/hello.txt         #输出重定向，新建
 [shiming@redhat doc]$ cat /tmp/hello.txt
 hello
@@ -1644,7 +1645,7 @@ hello world
 ```
 
 #### stderr重定向
-```
+``` bash
 [shiming@redhat doc]$ echox "hello world" 2>/tmp/hello_err.txt  #错误重定向，新建
 [shiming@redhat doc]$ cat /tmp/hello_err.txt
 bash: echox: command not found...
@@ -1667,7 +1668,7 @@ Similar command is: 'echo'
 ```
 
 #### stdout和stderr一起重定向
-```
+``` bash
 $ command >file 2>&1            #重定向stdout和stderr以覆盖同一个文件
 $ command &>file                #与上面等效(推荐)
 
@@ -1687,44 +1688,44 @@ Similar command is: 'echo'
 
 #### 重定向示例
 ##### 保存时间戳供以后参考
-```
+``` bash
 [shiming@redhat ~]$ date > /tmp/saved_timestamp
 ```
 ##### 将一个日志的后100行负责到另一文件
-```
+``` bash
 [shiming@redhat ~]$ tail -n 100 /var/log/dmesg >/tmp/last_100_boot_msg
 ```
 ##### 将四个文件连接为一个
-```
+``` bash
 [shiming@redhat ~]$ cat file1 file2 file3 file4 >/tmp/four_in_one
-```
+``` 
 ##### 将文件名列出到文件中
-```
+``` bash
 [shiming@redhat ~]$ cat /tmp/filename 
 ```
 ##### 将输出附加到现有文件
-```
+``` bash
 [shiming@redhat ~]$ echo "new line info" >>/tmp/many_lines_of_info
 [shiming@redhat ~]$ diff previous_file current_file >>/tmp/tracking_change_made
 ```
 ##### 将错误重定向到文件
-```
+``` bash
 [shiming@redhat ~]$ find /etc -name passwd 2>/tmp/error
 ```
 ##### 将输出和错误分别定向到不同文件
-```
+``` bash
 [shiming@redhat ~]$ find /etc -name passwd >/tmp/output 2>/tmp/error
 ```
 ##### 忽略并丢弃错误信息
-```
+``` bash
 [shiming@redhat ~]$ find /etc -name passwd >/tmp/output 2>/dev/null
 ```
 ##### 将输出和错误信息一并保存
-```
+``` bash
 [shiming@redhat ~]$ find /etc -name passwd &>/tmp/save_both
 ```
 ##### 将输出和错误信息附加保存
-```
+``` bash
 [shiming@redhat ~]$ find /etc -name passwd &>>/tmp/save_both
 ```
 
@@ -1734,13 +1735,13 @@ Similar command is: 'echo'
 #### 管道示例
 
 ##### 单一管道
-```
+``` bash
 [shiming@redhat ~]$ ls | wc -l            #计算文件数
 14
 ```
 
 ##### 管道和重定向组合使用
-```
+``` bash
 #将ls -l命令输出前5行重定向到 /tmp.first_five_lines文件
 [shiming@redhat ~]$ ls -l | head -n 5 > /tmp/first_five_lines  
 [shiming@redhat ~]$ cat /tmp/first_five_lines 
@@ -1753,7 +1754,7 @@ drwxr-xr-x. 2 shiming shiming 4096 Jan 13  2018 Downloads
 
 ##### tee
 Copy standard input to each FILE, and also to standard output.
-```
+``` bash
 [shiming@redhat ~]$ ls -l file* | tee /tmp/saved_output   #文件中有保持，stdout也打印
 -rw-rw-r--. 1 shiming shiming 0 Jul 28 09:41 file1
 -rw-rw-r--. 1 shiming shiming 0 Jul 28 09:41 file2
@@ -1762,7 +1763,7 @@ Copy standard input to each FILE, and also to standard output.
 -rw-rw-r--. 1 shiming shiming 0 Jul 28 09:41 file5
 ```
 
-```
+``` bash
 [shiming@redhat ~]$ ls -l file* | head -n 2 | tee /tmp/first_two_lines
 -rw-rw-r--. 1 shiming shiming 0 Jul 28 09:41 file1
 -rw-rw-r--. 1 shiming shiming 0 Jul 28 09:41 file2
@@ -1770,7 +1771,7 @@ Copy standard input to each FILE, and also to standard output.
 
 ## 用户和组
 ### 查看当前用户信息
-```
+``` bash
 [shiming@redhat ~]$ id
 uid=1000(shiming) gid=1000(shiming) groups=1000(shiming),10(wheel) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 ```
@@ -1787,7 +1788,7 @@ uid=1000(shiming) gid=1000(shiming) groups=1000(shiming),10(wheel) context=uncon
 
 ### 在passwd文件中搜索用户
 搜索用户tom
-```
+``` bash
 $ grep tom /etc/passwd
 ```
 
@@ -1882,7 +1883,7 @@ $ grep tom /etc/passwd
 | FreeBSD Ports    | cd /usr/ports/category/port && sudo make install | Builds and installs a port from source.                   |
 
 安装包时自动确认加`-y`选项  
-```
+``` bash
 sudo apt install -y nginx
 ```
 ### 从本地安装包  
@@ -1976,7 +1977,7 @@ The [FreeBSD Handbook](https://www.freebsd.org/doc/handbook/) contains a [sectio
 ```
 
 find `-type`参数
-```
+``` text
      -type t
              True if the file is of the specified type.  Possible file types are as follows:
 
@@ -1990,7 +1991,7 @@ find `-type`参数
 ```
 
 查找java文件
-```
+``` bash
 # find . -name '*.java'
 
 person.java
@@ -2003,7 +2004,7 @@ main.java
 ```
 
 找出777权限的文件
-```
+``` bash
 # find . -perm 777
 ```
 
@@ -2068,7 +2069,7 @@ find /tmp -type f -empty
 ```
 
 find找出路径后配合其他命令使用：
-```
+``` bash
 # 推荐，并行处理，无需借助管道
 find . -exec cmd {} + 
 
@@ -2115,22 +2116,22 @@ sed -i '' 's/original/new/g' file.txt
 ## 实用技巧
 ### 删除阿里云盾
 执行以下命令  
-```
+``` bash
 wget http://update.aegis.aliyun.com/download/uninstall.sh && chmod +x uninstall.sh && ./uninstall.sh
 ```
 
 执行以下命令
-```
+``` bash
 wget http://update.aegis.aliyun.com/download/quartz_uninstall.sh && chmod +x quartz_uninstall.sh && ./quartz_uninstall.sh
 ```
 
 删除残留  
-```
+``` bash
 pkill aliyun-service && rm -fr /etc/init.d/agentwatch /usr/sbin/aliyun-service && rm -rf /usr/local/aegis*
 ```
 
 屏蔽云盾
-```
+``` bash
 iptables -I INPUT -s 140.205.201.0/28 -j DROP
 iptables -I INPUT -s 140.205.201.16/29 -j DROP
 iptables -I INPUT -s 140.205.201.32/28 -j DROP
@@ -2148,14 +2149,14 @@ iptables -I INPUT -s 140.205.225.204/32 -j DROP
 （1）安装
 MySQL 是一个小型关系型数据库管理系统，其安装分为服务端与客户端
 安装命令如下：  
-```
+```  bash
 $ sudo apt-get install mysql-server mysql-client # 这样安装的会是mysql 5.5左右
 ```
 
 然后会看见输入密码的界面，你只需接下来输入管理员密码就行。
 
 （2）修改 MySQL 的配置文件
-```
+``` bash
 $ sudo vim /etc/mysql/my.cnf
 ```
 将 bind-address = 127.0.0.1 注释掉，就可以远程连接数据库了
@@ -2262,7 +2263,7 @@ Edit → Keyboard Shortcuts menu. 下可配置快捷键
 
 ### ssh配置免密码远程登陆
 ssh-copy-id将本地公钥copy到远程服务器允许的主机中去
-```
+``` bash
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub root@47.52.96.235
 /usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/Users/Shiming/.ssh/id_rsa.pub"
 The authenticity of host '47.52.96.235 (127.0.0.1)' can't be established.
@@ -2397,7 +2398,7 @@ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/loca
 ### 字符编码问题
 **-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory**
 centos ssh登录，登录成功但是报 -bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
-```
+``` bash
 ➜  ~ ssh shiming@10.211.55.13
 shiming@10.211.55.13's password:
 Last login: Sat Oct 13 19:33:34 2018
@@ -2409,7 +2410,7 @@ Last login: Sat Oct 13 19:33:34 2018
 sudo vi /etc/environment
 ```
 然后加上这两行，再次登录就不会报了：
-```
+``` text
 LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 ```
@@ -2523,13 +2524,13 @@ https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Ubuntu.zip
 
 问题原因： [Mac OS X ssh登陆Linux是终端提示cannot change locale](http://blog.huatai.me/2015/12/03/Mac-OS-X-ssh-to-Linux-prompt-setlocale-LC-CTYPE-cannot-change-locale-UTF-8/)  
 `man`命令运行后一直出这个提示，字符集问题，先运行：  
-```
+``` bash
 sudo locale-gen "en_US.UTF-8"
 sudo dpkg-reconfigure locales
 ```
 
 然后在`/etc/default/locale`加入以下行  
-```
+``` text
 LC_ALL="en_US.UTF-8"
 ```
 

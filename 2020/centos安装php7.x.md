@@ -3,7 +3,7 @@
 [//category]:(centos,php)
 [//tags]:(centos,php)
 [//createTime]:(20190325)
-[//updateTime]:(20200327)
+[//updateTime]:(20200402)
 
 ## 概述
 本文介绍在centos安装php    
@@ -48,16 +48,16 @@ yum --enablerepo=remi-php71 install php php-fpm
 ## step4: 安装其他模块（可选）
 ``` bash
 ## For PHP 7.4
-yum --enablerepo=remi-php74 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt
+yum --enablerepo=remi-php74 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt php-mysql
 
 ## For PHP 7.3
-yum --enablerepo=remi-php73 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt
+yum --enablerepo=remi-php73 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt php-mysql
 
 ## For PHP 7.2
-yum --enablerepo=remi-php72 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt
+yum --enablerepo=remi-php72 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt php-mysql
 
 ## For PHP 7.1
-yum --enablerepo=remi-php71 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt
+yum --enablerepo=remi-php71 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt php-mysql
 ```
 
 安装完成后查看版本  
@@ -80,12 +80,12 @@ systemctl enable php-fpm
 
 ## step6: 修改php配置（可选）
 编辑配置文件  
-```
+``` bash
 vim /etc/php.ini
 ```
 
 修改上传文件大小  
-```
+``` text
 post_max_size = 1024M
 memory_limit = 1024M
 upload_max_filesize = 1024M
