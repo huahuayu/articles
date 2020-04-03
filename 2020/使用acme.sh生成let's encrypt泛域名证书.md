@@ -7,7 +7,9 @@
 
 ## 概述
 
-本文介绍如何使用`acme.sh`生成 let's encrypt 泛域名 ssl 证书
+acme.sh 实现了 acme 协议，可以从 letsencrypt 生成免费的证书。
+
+本文介绍如何使用 acme.sh 生成 let's encrypt 泛域名 ssl 证书。
 
 ## 安装 acme.sh
 
@@ -59,7 +61,70 @@ acme.sh --issue --dns dns_dp -d 'liushiming.cn' -d '*.liushiming.cn'
 
 ## 证书自动更新
 
+证书有效期为 90 天
+
 每天 0:00 点自动检测所有的证书，如果快过期了，需要更新， 则会自动更新证书。
+
+## nginx 配置
+
+`wordpress.conf`
+
+```text
+server {
+    listen 80;
+    listen [::]:80;
+    server_name liushiming.cn www.liushiming.cn;
+    return 301 https://$server_name$request_uri;
+        root /var/www/html/wordpress;
+}
+
+server {
+        listen 443 ssl;
+        server_name liushiming.cn www.liushiming.cn;
+
+        ssl on;
+        ssl_certificate      /root/.acme.sh/liushiming.cn/fullchain.cer;
+        ssl_certificate_key  /root/.acme.sh/liushiming.cn/liushiming.cn.key;
+
+        root /var/www/html/wordpress;
+        index index.php index.html index.htm;
+
+        location / {
+                try_files $uri $uri/ /index.php?$args;
+        }
+
+        location ~ \.php$ {
+                include fastcgi-php.conf;
+        # fastcgi_pass 127.0.0.1:9000;
+        fastcgi_pass unix:/var/run/php-fpm.sock;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+        }
+}
+```
+
+Nginx 的配置 ssl_certificate 使用 fullchain.cer ，而非 .cer ，否则 SSL Labs 的测试会报 Chain issues Incomplete 错误。
+
+## 七牛云 https 域名配置（可选）
+
+我的图片是保存在七牛云的，如果使用 http 访问，就不是全站 https 了，所以七牛云也需要配置 https 证书  
+![](https://cdn.liushiming.cn/img/20200403162600.png)
+
+七牛云要求的证书格式是`.pem`格式的，而 acme 生成的证书是`.cer`后缀的，需要转换一下
+
+```bash
+cd ~/.acme.sh/your_domain.com
+openssl x509 -in fullchain.cer -out qiniu_fullchain.pem -outform PEM
+cat qiniu_fullchain.pem
+```
+
+将打印出来的证书复制贴到七牛云`证书内容`这栏
+
+`证书私钥`是无需转换的，直接`cat your_domain.com.key`获得
+
+## 验证 https
+
+访问[liushiming.cn](https://liushiming.cn)就可以看到 https 认证的小锁了
 
 ## 参考资料
 
