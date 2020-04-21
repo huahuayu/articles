@@ -1,90 +1,233 @@
-[//title]:(centos安装docker)
-[//englishTitle]:(install-docker-on-centos-use-yum)
-[//category]:(docker,tutorial)
-[//tags]:(docker,install docker)
-[//createTime]:(20190318)
-[//updateTime]:(20200402)
+[//title]: (drools示例项目-电商定价)
+[//englishtitle]: (drools-example-ecommerce-pricing)
+[//category]: (java,drools,tutorial)
+[//tags]: (java,drools,rule-engine)
+[//createtime]: (2020-03-05)
+[//updatetime]: (2020-04-02)
 
-## 概述
-centos用命令行安装docker很简单，比ubuntu下简单    
+## 介绍
 
-## 安装依赖
-``` bash
-sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+使用 drools 规则引擎实现的一个电商差异化定价服务
+
+- 有三种不同级别的客户(普通、vip、vvip)
+
+- 不同类型的客户有不同的折扣
+
+- 有三种不同的支付方式(信用卡、微信支付、支付宝)
+
+- 不同的付款方式有机会获得不同的满减金额（如支付宝满 100-10 元）
+
+[github 项目链接](https://github.com/huahuayu/drools-example)
+
+## 功能
+
+客户提交商品订单后，根据不同的规则计算最终的价格
+
+**客户类型折扣**
+
+| 客户类别 | 折扣 |
+| -------- | ---- |
+| 普通客户 | 9 折 |
+| 普通会员 | 8 折 |
+| 高级会员 | 7 折 |
+
+**支付方式满减**
+
+| 支付方式 | 优惠         |
+| -------- | ------------ |
+| 信用卡   | 无           |
+| 微信     | 满 100-5 元  |
+| 支付宝   | 满 100-10 元 |
+
+两个优惠可以叠加
+
+## QuickStart
+
+### 克隆项目
+
+```bash
+git clone https://github.com/huahuayu/drools.git
 ```
 
-## 添加docker源
-``` bash
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-```
- 
-## 安装docker
-``` bash
-sudo yum install docker-ce  
+### 导入项目
+
+使用 Intellij idea 或者 Eclipse 导入项目
+
+### 执行测试
+
+[DroolsTest.java](https://github.com/huahuayu/drools-example/blob/master/src/test/java/cn/liushiming/drools/DroolsTest.java)
+
+```java
+public class DroolsTest {
+
+    @Autowired
+    private PricingService pricingService;
+
+
+    @Test
+    public void getPriceTest() {
+        alicePrice();
+        bobPrice();
+        evaPrice();
+        frankPrice();
+    }
+
+    @Test
+    public void alicePrice(){
+        // alice, vip， buy iphone，price $1000, use wepay
+        Order order = new Order(1,new Customer("alice", CustomerType.VIP),new Product("iphone",1000.00f), PaymentMethod.WEPAY);
+        Result result = pricingService.getTheResult(order);
+        assertEquals("order1 price is wrong",  new Float(1000.00f * 0.8 - 5),result.getFinalPrice());
+    }
+
+    @Test
+    public void bobPrice(){
+        // bob, ordinary customer，buy macbook pro，price $2000, use credit card
+        Order order = new Order(2,new Customer("bob",CustomerType.ORDINARY),new Product("macbook pro",2000.00f), PaymentMethod.CREDITCARD);
+        Result result = pricingService.getTheResult(order);
+        assertEquals("bob price is wrong",new Float(2000.00f * 0.9 - 0),result.getFinalPrice());
+    }
+
+    @Test
+    public void evaPrice(){
+        // eva, vvip，buy mouse，price $99, use alipay
+        Order order = new Order(3,new Customer("eva",CustomerType.VVIP),new Product("mouse",98.00f), PaymentMethod.ALIPAY);
+        Result result = pricingService.getTheResult(order);
+        assertEquals("eva price is wrong",new Float(98.00f * 0.7 - 0),result.getFinalPrice());
+    }
+
+    @Test
+    public void frankPrice(){
+        // frank, vvip, buy airpod, price $200, use alipay
+        Order order = new Order(4,new Customer("frank",CustomerType.VVIP),new Product("airpod",200.00f), PaymentMethod.ALIPAY);
+        Result result = pricingService.getTheResult(order);
+        assertEquals("frank price is wrong",new Float(200.00f * 0.7 - 10),result.getFinalPrice());
+    }
+
+}
 ```
 
-## 卸载旧版本(可选)
-如果安装过程中有类似报错是因为有旧版本    
-``` text
-Transaction check error:
-  file /usr/bin/docker from install of docker-ce-17.12.0.ce-1.el7.centos.x86_64 conflicts with file from package docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
-  file /usr/bin/docker-containerd from install of docker-ce-17.12.0.ce-1.el7.centos.x86_64 conflicts with file from package docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
-  file /usr/bin/docker-containerd-shim from install of docker-ce-17.12.0.ce-1.el7.centos.x86_64 conflicts with file from package docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
-  file /usr/bin/dockerd from install of docker-ce-17.12.0.ce-1.el7.centos.x86_64 conflicts with file from package docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
+**结果**
+
+```text
+alice price: 795.0
+bob price: 1800.0
+eva price: 68.6
+frank price: 130.0
 ```
 
-卸载旧版本  
-``` bash
-sudo yum erase docker-engine-selinux
-sudo yum erase docker-common-2:1.12.6-68.gitec8512b.el7.centos.x86_64
+### Api
+
+提供了一个 api 来计算价格，可以调用接口来计算订单的最终价格
+
+```java
+    @PostMapping("/getPrice")
+    public Result getPrice(@RequestBody Order order) {
+        return pricingService.getTheResult(order);
+    }
 ```
 
-或者  
-``` bash
-sudo yum remove docker docker-common docker-selinux docker-engine
+request
+
+| 字段          | 含义     | 备注                                                |
+| ------------- | -------- | --------------------------------------------------- |
+| orderId       | 订单 id  |                                                     |
+| customer      | 客户信息 |                                                     |
+| customer.name | 客户姓名 |                                                     |
+| customer.type | 客户类型 | ORDINARY-普通客户，VIP-VIP 客户，VVIP-高级 VIP 客户 |
+| product       | 商品信息 |                                                     |
+| product.name  | 商品名   |                                                     |
+| product.price | 商品价格 |                                                     |
+| paymentMethod | 支付方式 | CREDITCARD-信用卡，WEPAY-微信支付，ALIPAY-支付宝    |
+
+response
+
+| 字段          | 含义     | 备注                                                |
+| ------------- | -------- | --------------------------------------------------- |
+| orderId       | 订单 id  |                                                     |
+| customer      | 客户信息 |                                                     |
+| customer.name | 客户姓名 |                                                     |
+| customer.type | 客户类型 | ORDINARY-普通客户，VIP-VIP 客户，VVIP-高级 VIP 客户 |
+| product       | 商品信息 |                                                     |
+| product.name  | 商品名   |                                                     |
+| product.price | 商品价格 |                                                     |
+| paymentMethod | 支付方式 | CREDITCARD-信用卡，WEPAY-微信支付，ALIPAY-支付宝    |
+| discount      | 折扣     |                                                     |
+| reduction     | 满减金额 |                                                     |
+| finalPrice    | 最终价格 |                                                     |
+
+示例 request
+
+```json
+{
+  "orderId": "1",
+  "customer": {
+    "name": "alice",
+    "type": "VIP"
+  },
+  "product": {
+    "name": "iphone",
+    "price": 1000.0
+  },
+  "paymentMethod": "WEPAY"
+}
 ```
 
-然后再重试安装  
-``` bash
-sudo yum install docker-ce  
+示例 response
+
+```json
+{
+  "order": {
+    "orderId": 1,
+    "customer": {
+      "name": "alice",
+      "type": "VIP"
+    },
+    "product": {
+      "name": "iphone",
+      "price": 1000
+    },
+    "paymentMethod": "WEPAY"
+  },
+  "discount": 0.8,
+  "reduction": 5,
+  "finalPrice": 795
+}
 ```
 
-## 查看docker版本
-``` bash
-docker -v
+try it
+
+```bash
+curl --request POST \
+  --url http://localhost:8080/getPrice \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: application/json' \
+  --data '{
+    "orderId": "1",
+    "customer": {
+        "name": "alice",
+        "type": "VIP"
+    },
+    "product": {
+        "name": "iphone",
+        "price": 1000.00
+    },
+    "paymentMethod": "WEPAY"
+}'
 ```
 
-## 启动docker
-``` bash
-systemctl start docker
-```
+## 未来拓展
 
-## 开机默认启动docker
-``` bash
-systemctl enable docker
-```
+- 使用更多的规则组合进行定价，如：
 
-## 检查docker运行状态
-``` bash
-systemctl status docker
-```
+  1. 产品类别（电器、图书、母婴）
+  2. 产品归属 (自营还是第三方)
+  3. 收货地址 (决定运费)
+  4. 促销组合减价（如：A 充电器+B 充电线组合购买，减 5 元）
+  5. 按活动/节日减价(如 6.18)
 
-## 验证docker安装
-跑一个docker hello world  
-``` bash
-docker run hello-world
-```
+- 从数据库配置规则
 
-## 安装特定版本docker
-查询有哪些可安装版本  
-``` bash
-yum list docker-ce --showduplicates | sort -r
-```
+- 将规则缓存，提高执行速度
 
-如果不加`--showduplicates` 则只会显示最新版本  
-`sort -r` 降序排列  
-
-安装特定版本  
-``` bash
-sudo yum install docker-ce-<VERSION STRING>
-```
+- 在线测试规则

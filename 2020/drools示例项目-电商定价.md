@@ -3,7 +3,7 @@
 [//category]:(java,drools,tutorial)
 [//tags]:(java,drools,rule-engine)
 [//createTime]:(2020-03-05)
-[//updateTime]:(2020-03-05)
+[//updateTime]:(2020-04-02)
 ## 介绍 
 使用drools规则引擎实现的一个电商差异化定价服务
 
@@ -102,7 +102,7 @@ public class DroolsTest {
 ```
 
 **结果**    
-```
+``` text
 alice price: 795.0
 bob price: 1800.0
 eva price: 68.6
