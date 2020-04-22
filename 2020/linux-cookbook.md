@@ -228,6 +228,8 @@ redhat 中有三种主机名类型：--pretty, --static, and --transient， [参
 [shiming@redhat ~]$                              #修改后重启，主机名变了
 ```
 
+注意：`/etc/hosts`文件中映射的 hostname 要自己手动修改
+
 ### 修改主机名(临时修改)
 
 ```bash
@@ -787,8 +789,8 @@ sudo systemctl reload ssh
 
 ```bash
 # Authentication:
-PermitRootLogin prohibit-password
 # yes - 允许root登录 no-不允许root登录 prohibit-password-禁止root使用密码登录
+PermitRootLogin prohibit-password
 ```
 
 2. 如果是禁止个别用户、用户组
@@ -2818,6 +2820,8 @@ $ hostnamectl
 ```bash
 hostnamectl set-hostname newhostnameyouwant
 ```
+
+注意：`/etc/hosts` 文件中 127.0.0.1 映射的 hostname 要自己手动修改
 
 ### 将远程服务器的文件复制到本地剪贴板
 
