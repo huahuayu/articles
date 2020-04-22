@@ -3,7 +3,7 @@
 [//category]: (linux,tutorial,cookbook)
 [//tags]: (linux)
 [//createtime]: (20200218)
-[//updatetime]: (20200421)
+[//updatetime]: (20200422)
 
 ## 查看 linux 版本
 
@@ -783,7 +783,15 @@ sudo systemctl reload ssh
 
 编辑`/etc/ssh/sshd_config`文件，
 
-1. 如果是禁止个别用户/组
+1. 如果是禁止 root 用户密码登录（但支持证书登录）
+
+```bash
+# Authentication:
+PermitRootLogin prohibit-password
+# yes - 允许root登录 no-不允许root登录 prohibit-password-禁止root使用密码登录
+```
+
+2. 如果是禁止个别用户、用户组
    在最后加上`Match`段，在里面加上
 
 ```bash
@@ -800,7 +808,7 @@ Match Group group1
     ChallengeResponseAuthentication no
 ```
 
-2. 如果禁止所有用户密码登录，将以下参数都改为 no
+3. 如果禁止所有用户密码登录，将以下参数都改为 no
 
 ```bash
 PasswordAuthentication no
@@ -816,7 +824,7 @@ sudo systemctl reload ssh
 无证书登录时会报错
 
 ```bash
-shiming@pro ➜  ~ ssh shiming@ubuntu
+$ ssh shiming@ubuntu
 shiming@ubuntu: Permission denied (publickey).
 ```
 
