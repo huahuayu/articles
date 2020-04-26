@@ -3,13 +3,13 @@
 [//category]: (vim)
 [//tags]: (vim)
 [//createtime]: (20200422)
-[//updatetime]: (20200422)
+[//updatetime]: (20200426)
 
 ## 概述
 
 使用 vim 编辑文件时，如果权限不够，提示 readonly，不让你保存，会很烦人，如果这时候退出辛辛苦苦的编辑就白费了
 
-辛运的是可以在不退出当前 vim 的情况下，使用命令`:w !sudo tee %`命令来强制保存
+幸运的是可以在不退出当前 vim 的情况下，使用命令`:w !sudo tee %`命令来强制保存，这个一般对 vim 熟悉的同学都知道
 
 但是这个命令背后的原理你知道吗？
 
@@ -61,15 +61,15 @@
 
 ## 强制保存后的警告
 
-执行完这个`:w !sudo tee %`命令会出一个警告
-
-因为正在编辑的文件已经在别处被修改了，vim 询问是否要重载新文件进来，按`L`重载
+执行完这个`:w !sudo tee %`命令，内容就强制保存了，但是会出一个警告
 
 ```text
 W12: Warning: File "/etc/hosts" has changed and the buffer was changed in Vim as well
 See ":help W12" for more info.
 [O]K, (L)oad File:
 ```
+
+这是因为正在编辑的文件已经在别处被修改了，vim 询问是否要重载新文件进来，按`L`重载即可
 
 ## 参考链接
 
