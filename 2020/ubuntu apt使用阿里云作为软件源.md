@@ -1,4 +1,4 @@
-[//title]: (ubuntu-apt使用阿里云作为软件源)
+[//title]: (ubuntu-apt使用国内源，享受飞一般的下载速度)
 [//englishtitle]: (ubuntu-use-aliyun-apt-source)
 [//category]: (linux,ubuntu,apt)
 [//tags]: (linux,ubuntu,apt,aliyun)
@@ -11,7 +11,7 @@ ubuntu `apt`包管理器默认的软件源为`archive.ubuntu.com/ubuntu/` 或 `c
 
 即下载软件都是要通过这两个网址下载。
 
-使用官方的软件源安装软件无疑是最安全的，但是问题是下载速度慢，因为服务器有可能在国外，也有可能带宽不行。
+使用官方的软件源无疑是最安全的，但是问题是下载速度慢，因为服务器有可能在国外，也有可能带宽不行，不能忍。
 
 在国内将其替换为阿里云的源速度会快得多，阿里云有大把资源可以支持，也算是对开源软件的贡献了。
 
