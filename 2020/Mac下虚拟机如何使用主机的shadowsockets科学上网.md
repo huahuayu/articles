@@ -133,4 +133,4 @@ The document has moved
 ```
 
 **注意：**  
-使用 export 命令只对当前的 terminal session 有效，如果想全部流量都走 Shadowsocks 出去，需要将 `export` 命令写到`.bashrc`、`.zshrc`或`.profile`文件中
+使用 `export` 命令只对当前的 terminal session 有效，如果想全部流量都走 Shadowsocks 出去，需要将 `export` 命令写到`.bashrc`、`.zshrc`或`.profile`文件中
