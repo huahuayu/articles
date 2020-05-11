@@ -3,7 +3,7 @@
 [//category]: (linux,tutorial,cookbook)
 [//tags]: (linux)
 [//createtime]: (20200218)
-[//updatetime]: (20200422)
+[//updatetime]: (20200511)
 
 ## 查看 linux 版本
 
@@ -969,7 +969,9 @@ ls /etc/passwd
 
 搜索`ctrl + r` , 取消搜索 `ctrl + g`
 
-### 后台运行命令
+## 后台运行命令
+
+### nohup 后台运行命令
 
 nohup command &
 
@@ -1822,6 +1824,18 @@ pinfo 提供更详细的帮助文档
 ### 标准输入、标准输出、标准错误
 
 ![https://www.linuxunit.com/io-redirection-stdin-stdout-stderr-streams/](https://www.linuxunit.com/images/stdin-stdout-stderr.png)
+
+### exit code
+
+bash 脚本运行终止时可以返回一个`exit code`，就像在 C 程序中一样。它也可以返回一个值，这个值可以给脚本的父进程。
+
+每个命令都会返回一个`exit status`（有时被称为返回状态或退出代码）。成功的命令会返回一个 0，而不成功的命令会返回一个非零值，通常可以解释为错误代码。行为良好的 UNIX 命令、程序和实用程序在成功完成后都会返回 0 的退出代码，但也有一些例外。
+
+同样，脚本中的函数和脚本本身也会返回一个退出状态。函数或脚本中最后执行的命令决定了退出状态。在脚本中，可以使用 exit nnn 命令向 shell 传送 nnn 退出状态（nnn 必须是 0 - 255 范围内的整数）。
+
+查看上一个命令的`exit code`的方法为`echo $?`如果运行正常，输出为 0，否则代表出错。
+
+[参考资料 Advanced Bash-Scripting Guide](https://www.tldp.org/LDP/abs/html/exit-status.html)
 
 ### 重定向
 
