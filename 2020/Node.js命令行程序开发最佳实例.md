@@ -3,7 +3,7 @@
 [//category]: (node,bash)
 [//tags]: (node,yargs,cli,命令行程序,command))
 [//createtime]: (20200507)
-[//updatetime]: (20200511)
+[//updatetime]: (20200514)
 
 ## 概述
 
@@ -11,6 +11,7 @@
 
 1. 新建便签 (示例：note add --title=note1 --body=cool)
 1. 查询便签 (示例：note get -t note1）
+1. 查询便签列表 (示例：note list)
 1. 修改便签 (示例：note update -t note1 -b new_content)
 1. 删除便签 (示例：del -t note1)
 
@@ -33,8 +34,7 @@ npm install -g
 使用`note -h`查看帮助
 
 ```text
-$ note -h
-Usage: note [add | get | update | del] [--title | --body]
+Usage: note [add | get | list | update | del] [--title | --body]
 
 Options:
   -c, --conf     absolute config file path (default $HOME/.note/conf.json)
@@ -46,8 +46,25 @@ Examples:
           --body=a_wonderful_day
   add     note add -t note1 -b a_wonderful_day
   get     note get -t note1
+  list    note list
   update  note update -t note1 -b new_content
   del     del -t note1
+
+```
+
+**目录结构**
+
+```text
+node-cli-example
+├── README.md
+├── bin
+│   └── note                    # 程序入口
+├── conf
+│   └── conf.json               # 配置文件
+├── package-lock.json
+├── package.json
+└── service
+    └── noteService.js          # 服务实现
 ```
 
 查看代码: [note.js](https://github.com/huahuayu/node-cli-example/blob/master/note.js)
@@ -97,6 +114,9 @@ note add -c /tmp/conf.json -t note1 -b cool
 # case2：便签不存在
 note get -t note1
 
+# 获取便签列表
+note list
+
 # 修改便签
 # case1: 便签存在
 # case2: 便签不存在
@@ -118,4 +138,5 @@ rm -r ~/.note
 ## 参考资料
 
 [yargs doc](http://yargs.js.org/docs/)
+
 [yargs error handling](https://github.com/yargs/yargs/issues/883)
