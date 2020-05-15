@@ -13,7 +13,15 @@ Node.js 的调试，我觉得有几个比较好的选择，我分开用三篇文
 
 - [使用 chrome devtools 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-chrome-devtools/)
 - [使用 vscode 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-vscode/)
-- 使用 webstorm 调试
+- [使用 webstorm 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-webstorm/)
+
+调试工具对比
+
+| 调试工具        | 特点                                          |
+| --------------- | --------------------------------------------- |
+| chrome devtools | 依赖少，原生支持                              |
+| vscode          | 方便，编码，打断点，调试都在一个工具完成      |
+| webstorm        | 最方便，功能强大，jetbrains 系列 IDE 统一体验 |
 
 本文描述如何使用 `chrome devtools` 来调试 Node.js。
 
