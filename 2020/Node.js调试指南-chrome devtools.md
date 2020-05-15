@@ -11,11 +11,11 @@
 
 Node.js 的调试，我觉得有几个比较好的选择，我分开用三篇文章来说明：
 
-- 使用 chrome devtools 调试
-- 使用 vscode 调试
+- [使用 chrome devtools 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-chrome-devtools/)
+- [使用 vscode 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-vscode/)
 - 使用 webstorm 调试
 
-本文描述如何使用 chrome devtools 来调试 Node.js。
+本文描述如何使用 `chrome devtools` 来调试 Node.js。
 
 ## 示例项目
 
