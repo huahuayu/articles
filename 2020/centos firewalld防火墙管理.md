@@ -117,7 +117,7 @@ mysqld_port_t                  tcp      1186, 3306, 63132-63164
 ```
 
 ### 设置服务使用非标准端口
-参见[centos设置服务使用非标准端口](https://liushiming.cn/2020/03/21/use-selinux-port-labeling-to-allow-services-to-use-non-standard-ports/)
+参见[centos设置服务使用非标准端口](https://liushiming.cn/article/use-selinux-port-labeling-to-allow-services-to-use-non-standard-ports/)
 
 ## 端口
 ### 开放端口

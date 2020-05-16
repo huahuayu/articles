@@ -14,7 +14,7 @@ centos: https://www.centos.org/download/
 下载iso格式的  
 
 ## 格式化u盘
-参考 [Mac下用命令行格式化U盘](https://liushiming.cn/2020/03/12/format-udisk-on-mac/)  
+参考 [Mac下用命令行格式化U盘](https://liushiming.cn/article/format-udisk-on-mac/)  
 
 ## 将iso文件转换为img文件
 命令    

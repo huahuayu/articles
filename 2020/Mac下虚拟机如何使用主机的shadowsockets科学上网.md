@@ -47,7 +47,7 @@ parallels desktop: 15.1.3
 
 ## 主机 terminal 如何科学上网
 
-参考我写的这篇文章[Mac 下 terminal 终端、jetbrains 系列 IDE 如何科学上网](https://liushiming.cn/2020/04/28/mac-terminal-proxy-though-shadowsocks-pass-gfw/)
+参考我写的这篇文章[Mac 下 terminal 终端、jetbrains 系列 IDE 如何科学上网](https://liushiming.cn/article/mac-terminal-proxy-though-shadowsocks-pass-gfw/)
 
 ## 虚拟机 terminal 如何科学上网
 

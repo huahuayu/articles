@@ -6,7 +6,7 @@
 [//updateTime]:(20200223)
 
 ## 概述
-Java8带来了一些全新的特性，包括lambda表达式、函数接口、方法引用、流、可选方法、接口中的静态方法和[默认方法](https://liushiming.cn/2020/02/23/java-default-methods/)。
+Java8带来了一些全新的特性，包括lambda表达式、函数接口、方法引用、流、可选方法、接口中的静态方法和[默认方法](https://liushiming.cn/article/java-default-methods/)。
 
 在本文中，我们将深入讨论为什么java8接口新增了默认方法，如何使用默认方法，并讨论一些有用的用例。
 

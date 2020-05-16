@@ -11,9 +11,9 @@
 
 Node.js 的调试，我觉得有几个比较好的选择，我分开用三篇文章来说明：
 
-- [使用 chrome devtools 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-chrome-devtools/)
-- [使用 vscode 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-vscode/)
-- [使用 webstorm 调试](https://liushiming.cn/2020/05/15/nodejs-debug-guide-webstorm/)
+- [使用 chrome devtools 调试](https://liushiming.cn/article/nodejs-debug-guide-chrome-devtools/)
+- [使用 vscode 调试](https://liushiming.cn/article/nodejs-debug-guide-vscode/)
+- [使用 webstorm 调试](https://liushiming.cn/article/nodejs-debug-guide-webstorm/)
 
 调试工具对比
 
@@ -63,7 +63,7 @@ duplicate title!
 
 ## 背景知识 - Node.js 调试的基本原理
 
-请参考上一篇文章[《Node.js 调试指南-chrome devtools》](https://liushiming.cn/2020/05/15/nodejs-debug-guide-chrome-devtools/#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86_%E2%80%93_Node_js_%E8%B0%83%E8%AF%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86)，本文不再赘述。
+请参考上一篇文章[《Node.js 调试指南-chrome devtools》](https://liushiming.cn/article/nodejs-debug-guide-chrome-devtools/#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86_%E2%80%93_Node_js_%E8%B0%83%E8%AF%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86)，本文不再赘述。
 
 ## 使用 vscode 调试
 
