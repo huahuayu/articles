@@ -1,4 +1,4 @@
-[//title]: (Node.js箭头函数)
+[//title]: (Node.js箭头函数详解)
 [//englishtitle]: (nodejs-arrow-function)
 [//category]: (node,javascript)
 [//tags]: (node,javascript,arrow-function,箭头函数)
