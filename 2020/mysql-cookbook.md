@@ -3,7 +3,7 @@
 [//category]: (mysql,tutorial,cookbook)
 [//tags]: (mysql)
 [//createtime]: (20190923)
-[//updatetime]: (20200402)
+[//updatetime]: (20200709)
 
 ## 安装
 
@@ -173,4 +173,10 @@ $ mysql -u [user] -p [dbname]  < dropalltables.sql
 
 ```bash
 mysql -u [user] -p [dbname] < /path/to/your/file.sql
+```
+
+## 连接远程服务器
+
+```bash
+mysql -u [user] -p -h [server_address] -P [mysql_port] -D [dbname]
 ```

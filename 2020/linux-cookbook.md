@@ -3,7 +3,7 @@
 [//category]: (linux,tutorial,cookbook)
 [//tags]: (linux)
 [//createtime]: (20200218)
-[//updatetime]: (20200511)
+[//updatetime]: (20200709)
 
 ## 查看 linux 版本
 
@@ -694,11 +694,41 @@ file2.txt                                     100%   26     0.3KB/s   00:00
 
 ### 添加用户
 
-https://www.tecmint.com/add-users-in-linux/
+使用`useradd`命令新增用户，用户初始状态是 lock 的，需要另外使用`passwd username`来手动设置用户密码，而且用户家目录不会默认创建，除非用`-m`或`-d`指定家目录。
+
+```bash
+# 新增用户
+$ useradd shiming
+# 修改用户密码
+$ passwd shiming
+Enter new UNIX password:
+Retype new UNIX password:
+passwd: password updated successfully
+# 切换用户家目录(此时家目录不存在)
+$ su - shiming
+No directory, logging in with HOME=/
+# 使用管理员账户为新用户建立家目录
+$ su - root
+$ sudo mkdir /home/shiming
+$ sudo chown shiming:shiming /home/shiming
+```
+
+```bash
+# 新增用户alice，自动生成家目录，指定默认shell为bash
+useradd -m alice -s /bin/bash
+```
+
+总的来说`useradd`是一个 lowlevel 的新增用户操作，建议使用`adduser`来新增用户，会有交互式的命令行一次性设置好用户的属性。
+
+```bash
+$ adduser alice
+```
+
+参考资料：https://www.tecmint.com/add-users-in-linux/
 
 ### 修改用户
 
-https://www.tecmint.com/usermod-command-examples/
+参考资料：https://www.tecmint.com/usermod-command-examples/
 
 ### 修改密码 - passwd
 
