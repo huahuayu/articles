@@ -1,10 +1,11 @@
-[//title]:(git-cookbook)
-[//englishTitle]:(git-cookbook)
-[//category]:(git,tutorial,cookbook)
-[//tags]:(git)
-[//createTime]:(20200301)
-[//updateTime]:(20200402)
-## git命令
+[//title]: (git-cookbook)
+[//englishtitle]: (git-cookbook)
+[//category]: (git,tutorial,cookbook)
+[//tags]: (git)
+[//createtime]: (20200301)
+[//updatetime]: (20200803)
+
+## git 命令
 
 | 命令                                              | 描述                                                     |
 | ------------------------------------------------- | -------------------------------------------------------- |
@@ -57,10 +58,11 @@
 | git pull repoName branchName                      | Download and merge ‘branchName’ of repoName              |
 | git fetch repoName branchName                     | Download, but not merge repoName                         |
 
+## 连接远程 repo
 
-## 连接远程repo
 ### Existing folder
-``` bash
+
+```bash
 cd existing_folder
 git init
 git remote add origin git@git/remote/repo.git
@@ -70,7 +72,8 @@ git push -u origin master
 ```
 
 ### Existing Git repository
-``` bash
+
+```bash
 cd existing_repo
 git remote rename origin old-origin
 git remote add origin git@git/remote/repo.git
@@ -78,61 +81,73 @@ git push -u origin --all
 git push -u origin --tags
 ```
 
-## 改变跟踪的远程repo
-如果远程repo重命名了，或者想跟踪另一个远程repo，本地repo将无法拉取远程的更新，所以也需要重命名，重命名方法如下  
-``` bash
-git remote set-url origin git@{new_repo_name}.git
-``` 
+## 改变跟踪的远程 repo
 
-可以使用`git remote -v`命令来查看修改前后的变化  
+如果远程 repo 重命名了，或者想跟踪另一个远程 repo，本地 repo 将无法拉取远程的更新，所以也需要重命名，重命名方法如下
+
+```bash
+git remote set-url origin git@{new_repo_name}.git
+```
+
+可以使用`git remote -v`命令来查看修改前后的变化
 
 ## 实用技巧
-### git status中文显示问题
-git status/git log中文显示为8进制编码，如果要正常显示，可使用命令
-``` bash
-git config --global core.quotepath false 
+
+### git status 中文显示问题
+
+git status/git log 中文显示为 8 进制编码，如果要正常显示，可使用命令
+
+```bash
+git config --global core.quotepath false
 git config --global gui.encoding utf-8
-git config --global i18n.commit.encoding utf-8 
-git config --global i18n.logoutputencoding utf-8 
+git config --global i18n.commit.encoding utf-8
+git config --global i18n.logoutputencoding utf-8
 # bash 环境下
 export LESSCHARSET=utf-8
 # cmd环境下：
 set LESSCHARSET=utf-8
-```  
+```
 
-## git重名文件
-用git管理的文件不能直接右键重命名，否则会被当成删除旧文件再新增一个文件，git下重命名文件应该用下面的方式  
-``` bash
+## git 重名文件
+
+用 git 管理的文件不能直接右键重命名，否则会被当成删除旧文件再新增一个文件，git 下重命名文件应该用下面的方式
+
+```bash
 $ git mv file1 file2
-```  
+```
 
 ## 将已跟踪文件的变更加入暂存
-已跟踪的文件变更加入暂存，忽略未跟踪的文件   
-``` bash
+
+已跟踪的文件变更加入暂存，忽略未跟踪的文件
+
+```bash
 $ git add -u
 ```
 
 ### 回退操作
-**场景一：**    
-文件已经commit，甚至push，现在希望以后不再跟踪，且要从repo中删除。   
-首先将文件添加到`.gitignore`然后执行以下命令。  
-``` bash
+
+**场景一：**  
+文件已经 commit，甚至 push，现在希望以后不再跟踪，从远程 repo 中删除，但是本地文件不删除。  
+首先将文件添加到`.gitignore`然后执行以下命令。
+
+```bash
 $ git rm --cached <file-name>
 # 支持通配符
 $ git rm --cached *.log
 ```
 
-如果是文件夹  
-``` bash
+如果是文件夹
+
+```bash
 $ git rm -r --cached directory/
 ```
 
-`git rm --cached <file-name>`会使文件不再被跟踪，但不会删除本地文件；`git rm -f <file-name>`还会将本地文件都删除掉  
+`git rm --cached <file-name>`会使文件不再被跟踪，但不会删除本地文件；`git rm -f <file-name>`还会将本地文件都删除掉。
 
 **场景二：**  
-文件已经添加到stage，还未commit，但暂时不想提交，想从staged状态变为unstaged状态，文件变更不丢失。  
+文件已经添加到 stage，还未 commit，但暂时不想提交，想从 staged 状态变为 unstaged 状态，文件变更不丢失。
 
-``` bash
+```bash
 # unstage一个文件
 $ git reset HEAD <file-name>
 # unstage所有文件
@@ -140,26 +155,29 @@ $ git reset HEAD .
 ```
 
 **场景三：**  
-本地已commit，但是未push到远程，现在想撤销commit，但变更不丢失，回到stage状态  
+本地已 commit，但是未 push 到远程，现在想撤销 commit，但变更不丢失，回到 stage 状态
 
-``` bash
+```bash
 git reset HEAD~1 --soft
 ```
 
 **场景四：**  
-放弃当前所有变更，回退到上一个commit版本  
-``` bash
+放弃当前所有变更，回退到上一个 commit 版本
+
+```bash
 $ git reset --hard
 ```
 
 放弃所有变更，回退到指定版本
-``` bash
+
+```bash
 $ git reset --hard <commit-id>
 ```
 
 **场景五：**  
-放弃已经track的，但是没有在stage的文件变更，已经在stage的文件保持不变(比`git reset --hard`要安全)   
-``` bash
+放弃已经 track 的，但是没有在 stage 的文件变更，已经在 stage 的文件保持不变(比`git reset --hard`要安全)
+
+```bash
 # 单个文件
 $ git checkout -- <file-name>
 # 所有文件
@@ -167,19 +185,22 @@ $ git checkout -- .
 ```
 
 **场景六：**  
-取消当前merge  
+取消当前 merge
 
-git版本 >= 1.6.1  
-``` bash
-git reset –merge 
+git 版本 >= 1.6.1
+
+```bash
+git reset –merge
 ```
 
-或者git版本 >= 1.7.4  
-``` bash
+或者 git 版本 >= 1.7.4
+
+```bash
 git merge --abort
 ```
 
 两者等价
 
 ### commit msg
-[git commit规范](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html) 
+
+[git commit 规范](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
