@@ -3,7 +3,7 @@
 [//category]: (mysql,tutorial,cookbook)
 [//tags]: (mysql)
 [//createtime]: (20190923)
-[//updatetime]: (20200709)
+[//updatetime]: (20200813)
 
 ## 安装
 
@@ -162,12 +162,24 @@ $ mysqldump -u [user] -p --all-databases > /path/to/alldata.sql
 $ mysql -u [user] -p < /path/to/alldata.sql
 ```
 
-## 删除数据库中所有表
+## 删除数据库(保留 database)
 
 ```bash
 $ mysql -u [user] -p [dbname] -s -e 'show tables' | sed -e 's/^/drop table /' -e 's/$/;/' > dropalltables.sql
 $ mysql -u [user] -p [dbname]  < dropalltables.sql
 ```
+
+## 清空数据库表(保留 table 结构)
+
+第一步：执行以下 sql（替换 mydatabase 为你要清空的数据库）
+
+```sql
+select CONCAT('TRUNCATE TABLE ',TABLE_SCHEMA,'.',table_name,';') from information_schema.tables where TABLE_SCHEMA='mydatabase';
+```
+
+第二步：再执行以上 sql 的输出结果就好
+
+参考：https://wiki.jikexueyuan.com/project/sql/truncate-table.html
 
 ## 执行 sql 文件
 
