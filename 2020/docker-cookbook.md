@@ -3,7 +3,7 @@
 [//category]: (docker,tutorial,cookbook)
 [//tags]: (docker)
 [//createtime]: (20190301)
-[//updatetime]: (20200709)
+[//updatetime]: (20200801)
 
 ## 安装 docker
 
@@ -256,6 +256,14 @@ ae5aba478456        nginx               "nginx -g 'daemon of…"   10 seconds ag
 b46fee7c3a84        nginx               "nginx -g 'daemon of…"   About an hour ago   Exited (0) 43 minutes ago                                                         practical_cray
 79c83674b996        nginx               "nginx -g 'daemon of…"   About an hour ago   Exited (0) About an hour ago                                                      wonderful_lamport
 328fe8f35e0d        eosio/eos:v1.4.2    "/bin/bash -c 'keosd…"   3 months ago        Exited (255) 2 months ago      127.0.0.1:5555->5555/tcp, 0.0.0.0:7777->7777/tcp   eosio
+```
+
+## 查看容器运行命令
+
+有时候容器运行的命令很长，使用`docker ps`查看时，命令看不全，使用`--no-trunc` option 可以不截断命令，这样就可以看到完整的命令了。
+
+```zsh
+docker ps  --no-trunc
 ```
 
 ## 停止容器运行
@@ -728,16 +736,38 @@ shiming@pro ➜  ~ docker logout
 Removing login credentials for https://index.docker.io/v1/
 ```
 
+## docker commit
+
+docker commit 会使用 container 创建一个新的 image，然后可以将这个 image 推送到 docker hub。
+
+```zsh
+shiming@pro ➜  ~ docker commit ed81b37c23ab huahuayu/fisco:2.4.0-prod
+sha256:1ed2ec08c45e3bbd9b4da3e31a9ff3b51728b4a86febd70ddd6ddc632fa4c749
+```
+
 ## docker push
 
 `docker push`和`git push`类似，可以将本地的 image push 到 docker hub 上（push 前先用`docker login`登录）。push 后可以在https://cloud.docker.com/repository/list查看push上来的image。
 
 ```zsh
-shiming@pro ➜  ~ docker push huahuayu/alpine
-The push refers to repository [docker.io/huahuayu/alpine]
-503e53e365f3: Mounted from library/alpine
-latest: digest: sha256:25b4d910f4b76a63a3b45d0f69a57c34157500faf6087236581eca221c62d214 size: 528
+shiming@pro ➜  ~ docker push huahuayu/fisco:2.4.0-prod
+The push refers to repository [docker.io/huahuayu/fisco]
 ```
+
+## 将 container 导出为本地 image
+
+```zsh
+docker export fisco-prod-2.4.0 > fisco-prod-2.4.0.tar
+```
+
+## 将本地 image 导入到 docker
+
+```zsh
+docker import /tmp/fisco-prod-2.4.0.tar huahuayu/fisco:2.4.0-prod
+sha256:d2236a00609a7d9c60e8f273d6383af3fe1296176e7782b3dca8852e64c89e46
+```
+
+## 运行 export 的 image
 
 ## 在容器中中运行 alpine
 
@@ -1289,9 +1319,15 @@ https://docs.docker.com/storage/
 
 ## 常用软件
 
+### mysql
+
+```bash
+docker run -p 3060:3306 --name mysql57 -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7
+```
+
 ### jenkins
 
-```
+```bash
 docker run -p 8080:8080 -p 50000:50000 -d --name jenkins <jenkins_image_id>
 ```
 

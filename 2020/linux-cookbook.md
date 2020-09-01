@@ -2419,6 +2419,7 @@ sed -i 's/original/new/g' file.txt
 mac 下的 sed 命令略有区别，前面还需要指定一个备份文件后缀。
 
 ```bash
+# 以下命令执行完，存在两个文件 file.txt file.txt.bup
 sed -i '.bup' 's/original/new/g' file.txt
 
 # 如果不需要备份也可以这么写的
