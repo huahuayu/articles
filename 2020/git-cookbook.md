@@ -91,6 +91,13 @@ git remote set-url origin git@{new_repo_name}.git
 
 可以使用`git remote -v`命令来查看修改前后的变化
 
+## git merge vs git rebase
+
+- 相同点：都是用来合并分支
+- 不同点：
+  - git merge - 合并时会创建一个新的 commit，专门处理合并；会留下真实的 checkout 历史；git log 历史看起来比较凌乱
+  - git rebase - 会改写 commit 历史，将修改附加到待合并分支的最新的 commit 上面；使用 rebase，git log 看起来比较好看；使用时**必须谨慎**，不能在公共的分支（不止你一人在改的）上做 rebase，因为 rebase 会改写 commit 历史，别人可能还在基于某个历史 commit 在修改
+
 ## 实用技巧
 
 ### git status 中文显示问题
