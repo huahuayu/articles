@@ -17,7 +17,7 @@ Copyright (C) 2007 Free Software Foundation, Inc.
 
 目前 GNU Bash 的最新版为 5.x 参考(http://ftp.gnu.org/gnu/bash/)。
 
-为什么我会想升级 bash 呢？因为我需要 4.x 以上的版本才可以使用`vscode`的[bash debug 插件](https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug)。对于一些复杂的 bash 脚本，我有 debug 的需求。
+为什么我会想升级 bash 呢？因为我需要 4.x 以上的版本才可以使用 vscode 的[bash debug 插件](https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug)。对于一些复杂的 bash 脚本，我有 debug 的需求（如何 debug bash 脚本，可以查看我这篇文章[使用 vscode 调试 bash 脚本](https://liushiming.cn/article/debug-bash-on-macos.html)）。
 
 下面介绍如何升级 Mac 的 bash 版本。
 
