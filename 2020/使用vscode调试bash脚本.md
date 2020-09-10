@@ -3,7 +3,7 @@
 [//category]: (mac,bash,vscode)
 [//tags]: (mac,bash,debug,vscode)
 [//createtime]: (2020-09-06)
-[//updatetime]: (2020-09-06)
+[//updatetime]: (2020-09-10)
 
 ## 概述
 
@@ -11,14 +11,21 @@
 
 ## 安装 bash debug 插件
 
-插件地址：https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug
+[插件地址](https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug)
 
 ## 前提条件
 
-- Mac
-  - 系统安装的 bash 版本 > 4.x (mac 自带版本为 3.2，需要手动升级，参考[Mac 升级最新版 bash](https://liushiming.cn/article/upgrading-bash-on-macos.html))
-- Windows
-  - 未测试
+Mac
+
+- 系统 bash 版本 > 4.x (mac 自带版本为 3.2，需要手动升级，参考[Mac 升级最新版 bash](https://liushiming.cn/article/upgrading-bash-on-macos.html))
+
+Windows
+
+- 未测试
+
+Linux
+
+- 未测试
 
 ## 配置 debug profile
 
