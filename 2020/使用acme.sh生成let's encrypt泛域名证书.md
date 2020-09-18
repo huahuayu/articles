@@ -3,7 +3,7 @@
 [//category]: (web,ssl,security)
 [//tags]: (acme,ssl,let'sencrypt,证书)
 [//createtime]: (20200402)
-[//updatetime]: (20200629)
+[//updatetime]: (20200917)
 
 ## 概述
 
@@ -52,6 +52,12 @@ curl  https://get.acme.sh | sh
 
 ```bash
 acme.sh --issue --dns dns_dp -d 'liushiming.cn' -d '*.liushiming.cn'
+```
+
+后续手动强制更新加上 `--force`选项
+
+```bash
+acme.sh --issue --force --dns dns_dp -d 'liushiming.cn' -d '*.liushiming.cn'
 ```
 
 **域名注意要加单引号** ，否则因为有`*`通配符，可能会报错（我使用的是 zsh，报的错为`zsh: no matches found: *.liushiming.com`）
@@ -154,6 +160,14 @@ cat qiniu_fullchain.pem
 将打印出来的证书复制贴到七牛云`证书内容`这栏
 
 `证书私钥`是无需转换的，直接`cat your_domain.com.key`获得
+
+证书上传后, 在 ssl 证书管理中就会出现新的证书了
+
+![](https://cdn.liushiming.cn/img/20200917104203.png)
+
+点击部署 cdn
+
+![](https://cdn.liushiming.cn/img/20200917104029.png)
 
 ## cdn 证书配置 - 阿里云
 
