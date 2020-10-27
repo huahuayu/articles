@@ -3,7 +3,7 @@
 [//category]: (vscode,vim,best-practice)
 [//tags]: (vscode,vim,插件,配置,最佳实践,prettier,中文,多项目,版本控制,git,时间统计,docker)
 [//createtime]: (20200516)
-[//updatetime]: (20200516)
+[//updatetime]: (20201027)
 
 ## 概述
 
@@ -45,6 +45,10 @@ OS: Darwin x64 19.4.0
 这种跨系统，跨平台，跨软件，使用同一套热键的感觉超级棒。
 
 ![](https://cdn.liushiming.cn/img/20200516163247.png)
+
+vim插件安装了之后，如果是windows电脑，ctrl + x / ctrl + c / ctrl + v 会用不了，需要在设置中将 `Vim: Use Ctrl Keys` 设置为 false（即取消勾选）。
+
+![](https://cdn.liushiming.cn/img/20201027163141.png)
 
 ## 命令面板
 
