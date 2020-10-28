@@ -1,9 +1,9 @@
-[//title]: (实测:使用cdn对搜索引擎不友好)
+[//title]: (实测-使用cdn对搜索引擎不友好.md)
 [//englishtitle]: (cdn-impacts-on-search-engine)
 [//category]: (seo)
 [//tags]: (cdn,阿里云,dnspod,seo,百度收录)
 [//createtime]: (20201009)
-[//updatetime]: (20201009)
+[//updatetime]: (20201028)
 
 ## cdn 原理
 
