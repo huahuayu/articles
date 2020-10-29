@@ -1,13 +1,15 @@
 [//title]: (zsh启动速度优化-5倍提升)
-[//englishtitle]: (speed-up-zsh-load-nvm-tuning)
+[//englishtitle]: (speed-up-zsh-load)
 [//category]: (zsh,linux,mac,problem-solved)
 [//tags]: (zsh,nvm,启动速度,mac)
 [//createtime]: (20201020)
-[//updatetime]: (20201020)
+[//updatetime]: (20201029)
 
 ## 概述
 
 Mac 下 `iterm` + `zsh` + `ohmyzsh`配置的组合本来很好用，但是随着使用插件的增多，再加上`.zshrc` / `.zprofile`文件中的一些命令加载耗时，现在新开一个 zsh tab 页异常的慢（3s 以上）。我平时使用命令行的频率很高，所以我决心做一次 zsh 启动性能优化。
+
+优化的结果是 3s 启动时间变成 0.6s，下面是详细的步骤。
 
 ## 环境
 
@@ -210,7 +212,7 @@ $ \time zsh -i -c exit
 
 ## 优化记录
 
-因为我在 github 用 .dotfiles 管理配置文件，所以本次优化都留有记录
+因为我在 github 用 .dotfiles 管理配置文件，所以本次优化都留有记录，有兴趣可以去查看。
 
 https://github.com/huahuayu/.dotfile/commit/31d9cc2452f8a29e1566b0edb8596772a5756790
 
