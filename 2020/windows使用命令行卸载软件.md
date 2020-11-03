@@ -3,7 +3,7 @@
 [//category]: (windows)
 [//tags]: (windows,命令行,cmd,卸载软件)
 [//createtime]: (2020-11-02)
-[//updatetime]: (2020-11-02)
+[//updatetime]: (2020-11-03)
 
 ## 概述
 
@@ -60,7 +60,7 @@ Go Programming Language amd64 go1.15.3
 Microsoft Update Health Tools
 ```
 
-## 将软件信息赋值给\$MyApp 变量
+## 将软件信息赋值给 MyApp 变量
 
 在软件列表中找到你要卸载的软件，比如说名字叫 "app-A", 使用以下命令将 app 信息查出赋值给 `$MyApp`
 
@@ -86,3 +86,7 @@ Caption           : your_app_title
 ```text
 $MyApp.Uninstall()
 ```
+
+## 参考资料
+
+[How To Use PowerShell To Uninstall an Application](https://redmondmag.com/articles/2019/08/27/powershell-to-uninstall-an-application.aspx)
