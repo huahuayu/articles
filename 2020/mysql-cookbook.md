@@ -3,11 +3,29 @@
 [//category]: (mysql,tutorial,cookbook)
 [//tags]: (mysql)
 [//createtime]: (20190923)
-[//updatetime]: (20200813)
+[//updatetime]: (20201106)
 
-## 安装
+## mysql server 安装
 
-[centos 安装 mysql](https://liushiming.cn/article/how-to-install-mysql-57-on-linux-centos7/)
+**本地安装**
+
+[centos 安装 mysql-server](https://liushiming.cn/article/how-to-install-mysql-57-on-linux-centos7/)
+
+**docker 安装**
+
+docker 安装很方便：
+
+```bash
+docker run -d -p 3060:3306 --name mysql5.7 -v /var/lib/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7
+```
+
+建议将数据目录映射出来。
+
+## mysql client 安装
+
+```bash
+sudo apt-get install mysql-client
+```
 
 ## 登录
 
@@ -106,6 +124,18 @@ SHOW GRANTS FOR '[user]'@'[host]';
 REVOKE ALL PRIVILEGES ON [database].* FROM '[user]'@'[host]';
 ```
 
+## 查看运行的端口
+
+```sql
+SHOW GLOBAL VARIABLES LIKE 'PORT';
+```
+
+也可以使用 netstat 命令查看
+
+```bash
+netstat -lntup | grep mysql
+```
+
 ## 修改密码
 
 ```bash
@@ -126,13 +156,23 @@ DROP USER 'user'@'localhost';
 
 ## 允许 root 远程访问
 
-授权
+**修改配置文件**
+
+```bash
+vim /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+如果没有上面的文件，配置文件也有可能是这个 `/etc/mysql/my.cnf`
+
+找到 bind-address，将 127.0.0.1 改成 0.0.0.0
+
+**授权**
 
 ```sql
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'your_password' WITH GRANT OPTION;
 ```
 
-刷新权限
+**刷新权限**
 
 ```sql
 flush privileges;
