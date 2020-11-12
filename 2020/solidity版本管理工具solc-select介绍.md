@@ -2,8 +2,8 @@
 [//englishtitle]: (solidity-version-manager-solc-select-introduction)
 [//category]: (ethereum,solidity)
 [//tags]: (ethereum,solidity,solc,nvm,jenv)
-[//createtime]: (20201105)
-[//updatetime]: (20201105)
+[//createtime]: (20201112)
+[//updatetime]: (20201112)
 
 ## 概述
 
@@ -31,13 +31,6 @@ Error: Source file requires different compiler version (current compiler is 0.7.
 
 安装的时候会下载所有稳定版本，`solc` 应该也不大, 安装很快。
 
-### OS X
-
-```bash
-docker pull trailofbits/solc-select
-docker run --read-only -i --rm --entrypoint='/bin/sh' trailofbits/solc-select:latest -c 'cat /usr/bin/install.sh' | bash -e
-```
-
 ### Linux
 
 ```bash
@@ -55,6 +48,19 @@ export PATH=$HOME/.solc-select:$PATH
 
 ```bash
 source ~/.zshrc
+```
+
+### OS X (测试失败)
+
+osx 我根据官网的安装指引，安装失败了（20201111 号测试），已提了[issue](https://github.com/crytic/solc-select/issues/33) 。
+
+目前 commit id: 002b9a8be26533c2240e1265870449f629477e32
+
+有兴趣自己试下。
+
+```bash
+docker pull trailofbits/solc-select
+docker run --read-only -i --rm --entrypoint='/bin/sh' trailofbits/solc-select:latest -c 'cat /usr/bin/install.sh' | bash -e
 ```
 
 ## 验证安装
