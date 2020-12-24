@@ -3,7 +3,7 @@
 [//category]: (mysql,tutorial,cookbook)
 [//tags]: (mysql)
 [//createtime]: (20190923)
-[//updatetime]: (20201113)
+[//updatetime]: (20201224)
 
 ## 安装
 
@@ -142,6 +142,34 @@ Database changed
 mysql> update user set authentication_string=PASSWORD("your_password") where user='your_user';
 mysql> FLUSH PRIVILEGES;
 mysql> quit;
+```
+
+## 免密登录
+
+```bash
+vi /etc/my.cnf
+```
+
+在`[mysqld]`一栏下面加上一行
+
+```text
+skip-grant-tables
+```
+
+重启 mysqld 服务
+
+```bash
+systemctl restart mysqld
+```
+
+命令行敲`mysql`即可登录
+
+## 重置 root 密码
+
+免密登录后可以重置用户密码
+
+```sql
+update user set authentication_string=PASSWORD("your_password") where user='your_user';
 ```
 
 ## 删除用户
