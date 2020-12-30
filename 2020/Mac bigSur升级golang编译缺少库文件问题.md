@@ -47,4 +47,4 @@ mount_apfs: volume could not be mounted: Permission denied
 mount: / failed with 66
 ```
 
-目前看解决的根目录不能写的办法是[这个](https://apple.stackexchange.com/questions/395508/can-i-mount-the-root-system-filesystem-as-writable-in-big-sur)（第一个回答) 但是我没有尝试。**尝试前请做好备份。** 有效果请告诉我一下。
+目前看解决根目录不能写的办法是[这个](https://apple.stackexchange.com/questions/395508/can-i-mount-the-root-system-filesystem-as-writable-in-big-sur)（第一个回答) 但是我没有尝试。**尝试前请做好备份。** 有效果请告诉我一下。
