@@ -3,7 +3,7 @@
 [//category]: (defi,ethereum,blockchain)
 [//tags]: (defi,ethereum,blockchain)
 [//createtime]: (20210519)
-[//updatetime]: (20210519)
+[//updatetime]: (20210614)
 
 ## Ethereum
 
@@ -39,6 +39,34 @@ https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
 
 ### pancakeswap
 
+v1:
+
 router: https://bscscan.com/address/0x05ff2b0db69458a0750badebc4f9e13add608c7f
 
 factory: https://bscscan.com/address/0xbcfccbde45ce874adcb698cc183debcf17952812
+
+v2:
+
+router: https://bscscan.com/address/0x10ED43C718714eb63d5aA57B78B54704E256024E
+
+factory: https://bscscan.com/address/0xca143ce32fe78f1f7019d7d551a6402fc5350c73
+
+### BakerySwap
+
+v1 and v1 only:
+
+router: https://bscscan.com/address/0xCDe540d7eAFE93aC5fE6233Bee57E1270D3E330F
+
+factory: https://bscscan.com/address/0x01bf7c66c6bd861915cdaae475042d3c4bae16a7
+
+## Heco
+
+### wht
+
+https://hecoinfo.com/address/0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f
+
+### mdex
+
+router: https://hecoinfo.com/address/0xED7d5F38C79115ca12fe6C0041abb22F0A06C300
+
+factory: https://hecoinfo.com/address/0xb0b670fc1f7724119963018db0bfa86adb22d941
