@@ -2,8 +2,8 @@
 [//englishtitle]: (git-cookbook)
 [//category]: (git,tutorial,cookbook)
 [//tags]: (git)
-[//createtime]: (20200301)
-[//updatetime]: (20200904)
+[//createtime]: (20210616)
+[//updatetime]: (20210616)
 
 ## git 命令
 
@@ -57,6 +57,7 @@
 | git clone –depth 1 https://nameOfRemoteRepository | Clone only last branch                                   |
 | git pull repoName branchName                      | Download and merge ‘branchName’ of repoName              |
 | git fetch repoName branchName                     | Download, but not merge repoName                         |
+| git push origin --delete branchName               | Delete remote branch                                     |
 
 ## 连接远程 repo
 
