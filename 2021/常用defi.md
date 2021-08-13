@@ -3,7 +3,7 @@
 [//category]: (defi,ethereum,blockchain)
 [//tags]: (defi,ethereum,blockchain)
 [//createtime]: (20210519)
-[//updatetime]: (20210614)
+[//updatetime]: (20210813)
 
 ## Ethereum
 
@@ -30,6 +30,14 @@ factory: https://etherscan.io/address/0x1f98431c8ad98523631ae4a59f267346ea31f984
 router: https://etherscan.io/address/0xd9e1ce17f2641f24ae83637ab66a2cca9c378b9f
 
 factory: https://etherscan.io/address/0xc0aee478e3658e2610c5f7a4a2e1777ce9e4f2ac
+
+### 1inch
+
+v3 router: https://etherscan.io/address/0x11111112542d85b3ef69ae05771c2dccff4faa26
+
+### metamask swap
+
+router: https://etherscan.io/address/0x881d40237659c251811cec9c364ef91dc08d300c
 
 ## Bsc
 
