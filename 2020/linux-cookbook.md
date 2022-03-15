@@ -2,8 +2,8 @@
 [//englishtitle]: (linux-cookbook)
 [//category]: (linux,tutorial,cookbook)
 [//tags]: (linux)
-[//createtime]: (20211128)
-[//updatetime]: (20211128)
+[//createtime]: (20220315)
+[//updatetime]: (20220315)
 
 ## 查看 linux 版本
 
@@ -287,6 +287,24 @@ cal(1), ncal(1)          - displays a calendar and the date of Easter
 
 ```bash
 shiming@pro ➜  ~ apropos cal
+```
+
+### sudo 运行上一个命令
+
+`!!`是上一个命令的别名，所以`sudo !!`可以以管理员权限执行上一个命令
+
+```bash
+sudo !!
+```
+
+### sudo 执行一个长命令
+
+`sudo` 有时在执行一个长命令时 `sudo cat /dev/null > /var/log/dpkg.log` 还是会提示权限不够，因为 `sudo` 只能让 `cat` 命令以 `root` 的权限执行，而对于 `>` 这个符号并没有 `root` 的权限。
+
+这时要用 `sh -c` 将整个长命令一起执行，全部提升到 `root` 权限执行。
+
+```bash
+sudo sh -c "cat /dev/null > /var/log/dpkg.log"
 ```
 
 ## 文件类型 - file
