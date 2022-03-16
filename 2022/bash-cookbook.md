@@ -204,6 +204,14 @@ echo ${a}2345
 
 ## 字符串运算
 
+| 运算符 | 说明                                         | 举例                     |
+| ------ | -------------------------------------------- | ------------------------ |
+| =      | 检测两个字符串是否相等，相等返回 true。      | [ $a = $b ] 返回 false。 |
+| !=     | 检测两个字符串是否不相等，不相等返回 true。  | [ $a != $b ] 返回 true。 |
+| -z     | 检测字符串长度是否为 0，为 0 返回 true。     | [ -z $a ] 返回 false。   |
+| -n     | 检测字符串长度是否不为 0，不为 0 返回 true。 | [ -n "$a" ] 返回 true。  |
+| $      | 检测字符串是否为空，不为空返回 true。        | [ $a ] 返回 true。       |
+
 ```bash
 #!/bin/bash
 
@@ -212,21 +220,33 @@ b="efg"
 
 if [ $a = $b ]
 then
-   echo "$a = $b : a == b"
+   echo "$a = $b : a 等于 b"
 else
-   echo "$a = $b: a != b"
+   echo "$a = $b: a 不等于 b"
 fi
-if [ -n $a ]
+if [ $a != $b ]
 then
-   echo "-n $a : The string length is not 0"
+   echo "$a != $b : a 不等于 b"
 else
-   echo "-n $a : The string length is  0"
+   echo "$a != $b: a 等于 b"
+fi
+if [ -z $a ]
+then
+   echo "-z $a : 字符串长度为 0"
+else
+   echo "-z $a : 字符串长度不为 0"
+fi
+if [ -n "$a" ]
+then
+   echo "-n $a : 字符串长度不为 0"
+else
+   echo "-n $a : 字符串长度为 0"
 fi
 if [ $a ]
 then
-   echo "$a : The string is not empty"
+   echo "$a : 字符串不为空"
 else
-   echo "$a : The string is empty"
+   echo "$a : 字符串为空"
 fi
 ```
 
