@@ -542,9 +542,11 @@ ls
 
 ```bash
 $ VARIABLE=abcdef
-$ if [ $VARIABLE == abcdef ] ; then echo yes ; else echo no ; fi
+$ if [[ $VARIABLE == abcdef ]] ; then echo yes ; else echo no ; fi
 yes
 ```
+
+如果用改成一个中括号，`[ $VARIABLE = abcdef ]` 要减少一个 `=` 号
 
 ### case
 
@@ -765,6 +767,20 @@ file
 ```
 
 注意: `\` 为连字符
+
+### 生成随机数
+
+```bash
+$(((RANDOM % $((upperBound - lowerBound))) + lowerBound))
+```
+
+如生成 [2000, 65000) 范围内的随机数
+
+```bash
+for i in $(seq 100); do echo $(((RANDOM % $((65000 - 2000))) + 2000));done
+```
+
+参考 https://stackoverflow.com/a/71501367/6797425
 
 ### cat 写文件
 
