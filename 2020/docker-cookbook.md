@@ -3,7 +3,7 @@
 [//category]: (docker,tutorial,cookbook)
 [//tags]: (docker)
 [//createtime]: (20190301)
-[//updatetime]: (20200801)
+[//updatetime]: (20220317)
 
 ## 安装 docker
 
@@ -334,6 +334,14 @@ follow 查看最后 100 行日志
 
 ```zsh
 $ docker logs --tail 100 -f <container>
+```
+
+## 查看未启动容器日志
+
+对于启动了之后出错的容器日志可以通过 `docker logs` 进行查看，但是未启动成功的容器是没有`docker logs`的，所以要通过 `docker inspect` 来查看
+
+```bash
+cat $(docker inspect --format '{{.LogPath}}' $容器id)
 ```
 
 ## 删除容器
