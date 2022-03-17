@@ -3,7 +3,7 @@
 [//category]: (linux,bash,tutorial,cookbook)
 [//tags]: (linux,bash,cookbook)
 [//createtime]: (20220311)
-[//updatetime]: (20220316)
+[//updatetime]: (20220317)
 
 ## 什么是 bash
 
@@ -723,6 +723,28 @@ funWithParam 1 2 3 4 5 6 7 8 9 34 73
 ```
 
 也可以有返回值，用 return 显示返回，但是返回值限定为 0-255 之间的数字，如果不加，将以最后一条命令运行结果作为返回值。获取返回值的方式为 `$?`，一般`0`为正常，非`0`为错误。
+
+## utilitis
+
+### awk
+
+取第一列输出
+
+```bash
+docker ps | grep ${keyword} | awk '{print $1}'
+```
+
+取最后一列输出
+
+```bash
+docker ps | grep ${keyword} | awk '{print $NF}'
+```
+
+配合 for 循环删除匹配的容器
+
+```bash
+for i in $(docker ps | grep ${keyword} | awk '{print $NF}'); do docker rm -f $i; done
+```
 
 ## 实例
 
