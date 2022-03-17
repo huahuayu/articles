@@ -344,6 +344,8 @@ $ docker logs --tail 100 -f <container>
 cat $(docker inspect --format '{{.LogPath}}' $容器id)
 ```
 
+如果文件里面没有内容可以尝试以前端交互式运行的方法 `docker run -it ...` 来启动容器，查看出错的地方
+
 ## 删除容器
 
 `docker container rm <container1> <container2>...` 或者 `docker rm` rm 只能删除已经停止运行的容器，加上 option `-f`可以强行删除
