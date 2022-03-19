@@ -3,7 +3,7 @@
 [//category]: (ethereum,blockchain,geth)
 [//tags]: (ethereum,blockchain,geth,attach,non-interactive)
 [//createtime]: (20220317)
-[//updatetime]: (20220317)
+[//updatetime]: (20220319)
 
 ## 问题
 
@@ -14,5 +14,5 @@
 示例
 
 ```bash
-geth --exec 'admin.nodeInfo' attach
+geth --exec 'admin.nodeInfo' attach http://127.0.0.1:8545
 ```

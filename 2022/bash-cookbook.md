@@ -3,7 +3,7 @@
 [//category]: (linux,bash,tutorial,cookbook)
 [//tags]: (linux,bash,cookbook)
 [//createtime]: (20220311)
-[//updatetime]: (20220317)
+[//updatetime]: (20220319)
 
 ## 什么是 bash
 
@@ -164,7 +164,7 @@ echo $myvar $x
 - `$$` : 脚本运行的当前进程 ID 号
 - `$!` : 后台运行的最后一个进程的进程 ID 号
 - `$@` : 与 $\* 相同,但是使用时加引号,并在引号中返回每个参数
-- $? : 显示最后命令的退出状态。 0 表示没有错误,其他任何值表明有错误。
+- `$?` : 显示最后命令的退出状态。 0 表示没有错误,其他任何值表明有错误。
 
 ## 赋默认值
 
@@ -977,6 +977,18 @@ done
 ```
 
 参考 https://www.cnblogs.com/liangyou666/p/10877630.html
+
+### 将程序放在后台运行
+
+小括号新起一个 shell 执行 `geth`命令
+
+将命令执行的标准输出和标准错误输出一起附加到 log.txt 文件中
+
+最后一个&符号代表放在后台执行
+
+```bash
+(geth $OPTION >> log.txt 2>&1)&
+```
 
 ## 符号说明
 
