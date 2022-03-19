@@ -790,6 +790,8 @@ read -p "please input a value: " VARIABLE
 
 `rm -f $(find /foo -name bar) &> /dev/null`: 静默删除找到的文件
 
+`echo "failed RPC connection to ${NAME}" >&2`: 直接输出错误信息到标准错误中
+
 参考 [Shell 重定向 ＆>file、2>&1、1>&2 、/dev/null 的区别](https://blog.csdn.net/u011630575/article/details/52151995)
 
 ## 管道
