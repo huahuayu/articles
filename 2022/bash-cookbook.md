@@ -19,6 +19,8 @@
 man bash
 ```
 
+官方手册 https://www.gnu.org/software/bash/manual/bash.html
+
 ## hello world
 
 vim script.sh
@@ -128,6 +130,29 @@ DNS="8.8.8.8"
 readonly DNS
 ```
 
+### 本地变量
+
+使用`local`声明本地变量，否则函数中的变量也将成为全局变量
+
+```bash
+#!/usr/bin/env bash
+
+myvar="hello"
+
+myfunc() {
+    local x
+    local myvar="one two three"
+    for x in $myvar
+    do
+        echo $x
+    done
+}
+
+myfunc
+
+echo $myvar $x
+```
+
 ### 位置参数
 
 从命令行传递到脚本的参数：`$0`，`$1`，`$2`，`$3`...
@@ -202,7 +227,9 @@ echo $a
 echo ${a}2345
 ```
 
-## 字符串运算
+## 字符串处理
+
+### 字符串运算符
 
 | 运算符 | 说明                                         | 举例                     |
 | ------ | -------------------------------------------- | ------------------------ |
@@ -248,6 +275,75 @@ then
 else
    echo "$a : 字符串为空"
 fi
+```
+
+### 字符串切割
+
+#### 路径切割
+
+详见 `basename` `dirname`
+
+#### 切割左边字符串
+
+```bash
+$ MYVAR=foodforthought.jpg
+$ echo ${MYVAR##*fo} # 两个 # 代表贪婪匹配
+rthought.jpg
+$ echo ${MYVAR#*fo} # 一个 # 代表非贪婪匹配
+odforthought.jpg
+```
+
+贪婪匹配的过程
+
+```text
+f
+fo              MATCHES *fo
+foo
+food
+foodf
+foodfo          MATCHES *fo
+foodfor
+foodfort
+foodforth
+foodfortho
+foodforthou
+foodforthoug
+foodforthought
+foodforthought.j
+foodforthought.jp
+foodforthought.jpg
+```
+
+实用示例：判断文件是否是 tar 压缩文件
+
+```bash
+#!/bin/bash
+if [ "${1##*.}" = "tar" ]
+then
+       echo $1"是压缩文件"
+else
+       echo $1"不是压缩文件"
+fi
+```
+
+#### 切割右边字符串
+
+```bash
+ MYFOO="chickensoup.tar.gz"
+$ echo ${MYFOO%%.*}  # 两个 % 代表贪婪匹配
+chickensoup
+$ echo ${MYFOO%.*}  # 一个 % 非贪婪匹配
+chickensoup.tar
+```
+
+tips: 如果你忘了使用 '#' 还是 '%'，看看键盘上面的 3，4，5 键就明白了
+
+#### 按偏移量和长度切割
+
+```bash
+str="give me an apple."
+substr=${str:11:5} # 从数组下标11开始，取5个长度的字符
+echo $substr   # apple
 ```
 
 ## 文件测试运算符
@@ -640,6 +736,28 @@ input value(q to quit): 10
 input value(q to quit): q
 ```
 
+### for 循环
+
+循环处理一个目录下的文件
+
+```bash
+for x in /var/log/*
+do
+    echo `basename $x` is a file living in /var/log
+done
+```
+
+### until
+
+```bash
+myvar=0
+until [ $myvar -eq 10 ]
+do
+    echo $myvar
+    myvar=$(( $myvar + 1 ))
+done
+```
+
 ## 获取用户输入
 
 ```bash
@@ -755,8 +873,28 @@ $ mkdir -p /tmp/foo/bar
 $ cd /tmp/foo/bar
 $ basename $(pwd)
 bar
-bash-3.2$ dirname $(pwd)
+$ dirname $(pwd)
 /tmp/foo
+```
+
+`dirname` 并不是总是返回目录绝对路径，如在当前目录下查询不带`/`的文件目录，则返回一个`.`代表当前目录
+
+```bash
+$ mkdir /tmp/foo && touch /tmp/foo/bar.txt && cd /tmp/foo
+$ dirname bar.txt
+.
+```
+
+进入当前目录
+
+```bash
+cd $(dirname $0)
+```
+
+在 bash 中最可靠的获取目录绝对路径的方法是
+
+```bash
+echo $(cd $(dirname $0); pwd)
 ```
 
 ### 清空日志文件
