@@ -1,4 +1,4 @@
-[//title]: (go-sync.pool-分析和适用场景)
+[//title]: (go-sync.Pool-分析和适用场景)
 [//englishtitle]: (go-sync-pool)
 [//category]: (go,concurrent-programming,snippet)
 [//tags]: (go,concurrent-programming,snippet)
