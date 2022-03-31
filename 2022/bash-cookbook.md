@@ -3,7 +3,7 @@
 [//category]: (linux,bash,tutorial,cookbook)
 [//tags]: (linux,bash,cookbook)
 [//createtime]: (20220311)
-[//updatetime]: (20220319)
+[//updatetime]: (20220331)
 
 ## 什么是 bash
 
@@ -71,6 +71,31 @@ source script.sh
 ```text
 ! case  do done elif else esac fi for function if in select then until while { } time [[ ]]
 ```
+
+## set
+
+建议在所有脚本头部加上这几个设置
+
+```bash
+set -o errexit
+set -o pipefail
+set -o nounset
+```
+
+`set -o errexit` 等同于 `set -e`, 表示遇错误终止执行。如果允许某个命令在出错时可继续运行，可以单独使用 command || true 来控制。
+
+`set -o pipefail` 遇 pipeline 错误终止执行。
+
+`set -o nounset` 不允许未赋初值的变量，这个很重要，可以避免未赋值的变量带来严重后果，比如下面的 script 在没变量没赋值的情况下会将所有系统文件删除 (如果要测试请在 docker 里面测试)。
+
+```bash
+#!/bin/bash
+# Silly script to backup folders.
+# Oh no! We forgot to set the variables for BACK_FOLDER and DESTINATION!cp -r /$BACKUP_FOLDER /$DESTINATION
+rm -rf /$BACKUP_FOLDER # Because we forgot to do set -o nounset at the beginning of our script, this will destroy your system if run as sudo.
+```
+
+`set -x` 可以将 script 执行过程中的命令打印出来，方便调试。
 
 ## 变量赋值
 
@@ -165,6 +190,16 @@ echo $myvar $x
 - `$!` : 后台运行的最后一个进程的进程 ID 号
 - `$@` : 与 $\* 相同,但是使用时加引号,并在引号中返回每个参数
 - `$?` : 显示最后命令的退出状态。 0 表示没有错误,其他任何值表明有错误。
+
+示例
+
+检查脚本参数个数
+
+```bash
+[[ $# -ne 3 ]] && echo "usage is `basename $0` arg1 arg2 arg3" && exit 1
+```
+
+`basename $0` 将获得脚本文件名
 
 ## 赋默认值
 
@@ -867,6 +902,12 @@ for i in $(docker ps | grep ${keyword} | awk '{print $NF}'); do docker rm -f $i;
 ```
 
 ## 实例
+
+### 检查是否 sudo 执行
+
+```bash
+[[ $(id -u) -eq 0 ]] && echo "please don't run as root!" && exit 1
+```
 
 ### 获取当前目录/文件名
 
