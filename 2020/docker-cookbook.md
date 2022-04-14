@@ -3,7 +3,7 @@
 [//category]: (docker,tutorial,cookbook)
 [//tags]: (docker)
 [//createtime]: (20190301)
-[//updatetime]: (20220317)
+[//updatetime]: (20220412)
 
 ## 安装 docker
 
@@ -1344,3 +1344,26 @@ docker run -p 8080:8080 -p 50000:50000 -d --name jenkins <jenkins_image_id>
 ## 教程推荐
 
 - [docker 101](https://www.aquasec.com/wiki/display/containers/Docker+Containers)
+
+## 疑难杂症
+
+### 文件映射不上
+
+#### 问题描述
+
+在 mac 上面跑 prometheus 容器，想把本地文件`/usr/local/etc/prometheus/prometheus.yml` 映射到容器，报 `Are you trying to mount a directory onto a file (or vice-versa)?`
+
+```text
+docker run -d --name prometheus --restart always -p 9090:9090 -v /usr/local/etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus:v2.34.0
+0279a27b04d2d76e268054d394d70f607e7bc89c11bc20ba5d65c659ca8e72dd
+docker: Error response from daemon: OCI runtime create failed: container_linux.go:380: starting container process caused: process_linux.go:545: container init caused: rootfs_linux.go:76: mounting "/usr/local/etc/prometheus/prometheus.yml" to rootfs at "/etc/prometheus/prometheus.yml" caused: mount through procfd: not a directory: unknown: Are you trying to mount a directory onto a file (or vice-versa)? Check if the specified host path exists and is the expected type.
+```
+
+#### 解决方案
+
+原因我至今没找到，应该是`/usr/local/etc`这个目录比较特别，换一个目录就好。
+
+```bash
+docker run -d --name prometheus --restart always -p 9090:9090 -v /tmp/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus:v2.34.0
+e200c567d49beaf7e4af56a85b97f0274d10ef3fdfa81c669717a3c2476a1422
+```
