@@ -3,7 +3,7 @@
 [//category]: (vscode,problem-soloved)
 [//tags]: (vscode,folded,copy,paste)
 [//createtime]: (20220414)
-[//updatetime]: (20220414)
+[//updatetime]: (20220415)
 
 ## Problem
 
@@ -21,4 +21,4 @@ But sometimes we'd like to keep the code folded, we just need the skeleton. So h
 
 **Step4:** Column select all the code, copy and paste, done!
 
-![](https://cdn.liushiming.cn/img/2022-04-14_21-18-44.gif)
+check the gif [https://cdn.liushiming.cn/img/2022-04-14_21-18-44.gif](https://cdn.liushiming.cn/img/2022-04-14_21-18-44.gif)
