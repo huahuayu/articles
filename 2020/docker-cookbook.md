@@ -3,7 +3,7 @@
 [//category]: (docker,tutorial,cookbook)
 [//tags]: (docker)
 [//createtime]: (20190301)
-[//updatetime]: (20220412)
+[//updatetime]: (20220504)
 
 ## 安装 docker
 
@@ -258,6 +258,49 @@ b46fee7c3a84        nginx               "nginx -g 'daemon of…"   About an hour
 328fe8f35e0d        eosio/eos:v1.4.2    "/bin/bash -c 'keosd…"   3 months ago        Exited (255) 2 months ago      127.0.0.1:5555->5555/tcp, 0.0.0.0:7777->7777/tcp   eosio
 ```
 
+## 查看容器的大小
+
+简版
+
+```bash
+docker system df
+```
+
+详细版
+
+```bash
+docker system df --verbose
+```
+
+## 查看容器挂载的 volume
+
+volume list
+
+```bash
+docker volume ls
+```
+
+volume inspect
+
+```bash
+$ docker volume inspect op-replica_dtl
+[
+    {
+        "CreatedAt": "2022-05-01T00:00:03Z",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.compose.project": "op-replica",
+            "com.docker.compose.version": "2.4.1",
+            "com.docker.compose.volume": "dtl"
+        },
+        "Mountpoint": "/var/lib/docker/volumes/op-replica_dtl/_data",
+        "Name": "op-replica_dtl",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+```
+
 ## 查看容器运行命令
 
 有时候容器运行的命令很长，使用`docker ps`查看时，命令看不全，使用`--no-trunc` option 可以不截断命令，这样就可以看到完整的命令了。
@@ -383,6 +426,18 @@ ce4
 
 `docker container run`命令可以指定不少参数：  
 ![](https://github.com/huahuayu/img/blob/master/20190302072704.png?raw=true)
+
+## 查看 docker run 命令
+
+一个容器跑起来了，假如 `docker run` 命令很复杂，或者过了一段时间你忘记了启动命令，如何查看回当时的 `docker run` 命令是什么？
+
+方法一：`docker inspect <container>`
+
+方法二：`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock nexdrew/rekcod <container>`
+
+方法三：`docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike -p <container>`
+
+我更喜欢第三种，打印的格式漂亮 (需使用 `-p` 参数)
 
 ## 查看容器中的进程
 
