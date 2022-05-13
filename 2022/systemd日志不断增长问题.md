@@ -41,7 +41,7 @@ messages-20220508
 
 稍微 google 了一下，这个日志文件本来就是由 `logrotate` 来管理的，所以只要改下 `logrotate` 的配置就好，改成保留 5 天的日志，滚动删除。
 
-主配置文件在 `/etc/logrotate.conf` 提供默认配置，同时会加载 `/etc/logrotate.d` 目录中的配置，可以覆写默认配置（是不是觉得和 nginx 很像）。
+主配置文件在 `/etc/logrotate.conf` 提供默认配置，同时会加载 `/etc/logrotate.d` 目录中的配置，可以覆写默认配置（是不是觉得和 nginx 、.bashrc/.bash_profile 很像）。
 
 `/var/log/messages` 的配置在 `/etc/logrotate.d/syslog`
 
