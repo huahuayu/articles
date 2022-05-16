@@ -3,13 +3,13 @@
 [//category]: (linux,systemd,utility,tools)
 [//tags]: (linux,systemd,log,utility,logrotate)
 [//createtime]: (20220513)
-[//updatetime]: (20220516)
+[//updatetime]: (20220513)
 
 ## 问题
 
 通过监控发现服务器的系统盘占用越来越大，就快没有空间了，通过[寻找大文件大目录](https://liushiming.cn/article/find-large-dir-and-file.html)发现是`/var/log/messages` 文件占用的多。`tail -f` 查看了一下还在不断的打印，这是某个业务系统的日志，因为使用 systemd 管理，所以打印在这里。
 
-可以看到现在日志是这样一个状态：
+可以看到现在日志是这样一个状态
 
 ```text
 messages
@@ -87,7 +87,7 @@ debug 试运行
 sudo logrotate -d /etc/logrotate.conf
 ```
 
-`-d` option 可以以 debug 执行 logrotate，看看是不是你想要的结果（这是一个 dry run）。
+`-d` option 可以以 debug 执行 logrotate，看看是不是你想要的结果。
 
 没有问题就可以 `-f` 强制刷新一下主配置（同时会将副配置 include 进来），如果不刷新配置也没关系，默认一天会刷新一次（cron job）
 
