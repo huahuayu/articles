@@ -122,7 +122,9 @@ But some database may not in the list, e.g. clickhouse.
 
 ## Install clickhouse JDBC driver for tableau server
 
-repo: https://github.com/analytikaplus/clickhouse-tableau-connector-jdbc
+tutorial: https://clickhouse.com/learn/lessons/connect-tableau-to-clickhouse/
+
+connector repo: https://github.com/analytikaplus/clickhouse-tableau-connector-jdbc
 
 I transalated the steps into bash script:
 
@@ -132,7 +134,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-DRIVER_VERSION=0.3.2-patch9
+DRIVER_VERSION=0.3.2-patch7
 DATA_DIR=/data/tableau
 PACKAGED_CONNECTOR_VERSION=0.2.2
 
@@ -162,9 +164,33 @@ After restart, you can see the newly added clickhouse connector:
 
 ![](https://cdn.liushiming.cn/img/20220516093202.png)
 
-## Uninstall tableau
+## Uninstall tableau server
 
 ```bash
 tsm licenses deactivate -k <license-key>
 sudo /opt/tableau/tableau_server/packages/scripts.*/tableau-server-obliterate -a -y -y -y -l
 ```
+
+## Install Clickhouse driver for tableau desktop
+
+download driver: https://github.com/ClickHouse/clickhouse-jdbc/releases/download/v0.3.2-patch7/clickhouse-jdbc-0.3.2-patch7-shaded.jar
+
+driver path: ~/Library/Tableau/Drivers
+
+download connector: https://github.com/analytikaplus/clickhouse-tableau-connector-jdbc/releases
+
+connector path: ~/Documents/My Tableau Repository/Connectors
+
+## Install MongoDB driver for tableau desktop
+
+For connect MongoDB to tableau, you need install `MongoDB Connector for BI` which is available as part of the MongoDB Enterprise Advanced subscription.
+
+I haven't tried it.
+
+## Install trino driver for tableau desktop
+
+`Trino` is renamed from `Presto`, but tableau still use the name `Presto`, same thing.
+
+driver: https://trino.io/docs/current/installation/jdbc.html#installing
+
+driver path: ~/Library/Tableau/Drivers
