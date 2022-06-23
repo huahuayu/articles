@@ -3,7 +3,7 @@
 [//category]: (tableau,snippet)
 [//tags]: (tableau,snippet)
 [//createtime]: (20220511)
-[//updatetime]: (20220516)
+[//updatetime]: (20220623)
 
 ## Official guide
 
@@ -183,9 +183,9 @@ connector path: ~/Documents/My Tableau Repository/Connectors
 
 ## Install MongoDB driver for tableau desktop
 
-For connect MongoDB to tableau, you need install `MongoDB Connector for BI` which is available as part of the MongoDB Enterprise Advanced subscription.
+For connect MongoDB to tableau, you need install `MongoDB Connector for BI` ([guideline](https://liushiming.cn/article/mongodb-bi-connector.html)), so that you can use sql.
 
-I haven't tried it.
+The actual driver used is mysql.
 
 ## Install trino driver for tableau desktop
 
@@ -194,3 +194,13 @@ I haven't tried it.
 driver: https://trino.io/docs/current/installation/jdbc.html#installing
 
 driver path: ~/Library/Tableau/Drivers
+
+## Summarize - generic JDBC driver install method
+
+Put driver jar file in Tableau JDBC driver path, make sure the jar file permission is 755.
+
+```text
+Windows: C:\Program Files\Tableau\Drivers
+Mac: /Library/JDBC or ~/Library/JDBC
+Linux: /opt/tableau/tableau_driver/jdbc
+```

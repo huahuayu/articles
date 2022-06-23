@@ -3,13 +3,17 @@
 [//category]: (tracing)
 [//tags]: (tracing,openTracing)
 [//createtime]: (20220621)
-[//updatetime]: (20220621)
+[//updatetime]: (20220623)
 
-Opentracing 是分布式链路追踪的一种规范标准，大概发布于 2016 年 12 月，是 CNCF（云原生计算基金会）下的项目之一。和一般的规范标准不同，Opentracing 不是传输协议，消息格式层面上的规范标准，而是一种语言层面上的 API 标准。以 Go 语言为例，只要某链路追踪系统实现了 Opentracing 规定的接口（interface），符合 Opentracing 定义的表现行为，那么就可以说该应用符合 Opentracing 标准。这意味着开发者只需修改少量的配置代码，就可以在符合 Opentracing 标准的链路追踪系统之间自由切换。
+Opentracing 是分布式链路追踪的一种规范标准 (现在改名为 OpenTelemetry)，发布于 2016 年 12 月，是 CNCF（云原生计算基金会）下的项目之一。和一般的规范标准不同，Opentracing 不是传输协议，消息格式层面上的规范标准，而是一种语言层面上的 API 标准。以 Go 语言为例，只要某链路追踪系统实现了 Opentracing 规定的接口（interface），符合 Opentracing 定义的表现行为，那么就可以说该应用符合 Opentracing 标准。这意味着开发者只需修改少量的配置代码，就可以在符合 Opentracing 标准的链路追踪系统之间自由切换。
 
 ## 标准文档
 
 https://opentracing.io/specification/
+
+## 语言无关 proto 定义
+
+https://github.com/open-telemetry/opentelemetry-proto
 
 ## 概念
 
@@ -66,6 +70,16 @@ Opentracing json message 格式，不拘用什么客户端，只要符合这种�
     "baggage": {"a":"b"},
 }
 ```
+
+## 数据收集
+
+[数据收集](https://opentelemetry.io/docs/concepts/data-collection/)由 3 个组件构成：
+
+- receivers: How to get data into the Collector; these can be push or pull based
+- processors: What to do with received data
+- exporters: Where to send received data; these can be push or pull based
+
+https://github.com/open-telemetry/opentelemetry-collector
 
 ## Tracing 相关方案
 
