@@ -3,7 +3,7 @@
 [//category]: (mongodb,snippet)
 [//tags]: (mongodb,snippet)
 [//createtime]: (20230222)
-[//updatetime]: (20230222)
+[//updatetime]: (20230321)
 
 ## 问题描述
 
@@ -58,7 +58,7 @@ for (var index in collectionList) {
 **Step1:** 通过`mongosh`执行 script
 
 ```bash
-mongosh 'mongodb://$user:$passwd@$host:$port/$db?ssl=false&authSource=admin' /tmp/script.js > /tmp/result.txt
+mongosh --quiet 'mongodb://$user:$passwd@$host:$port/$db?ssl=false&authSource=admin' /tmp/script.js > /tmp/result.txt
 ```
 
 结果直接是可执行的 mongo 语句
